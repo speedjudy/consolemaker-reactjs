@@ -1,0 +1,66 @@
+{
+  "name": "game-concole-maker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "concurrently": "^7.2.2",
+    "copy-to-clipboard": "^3.3.2",
+    "downloadjs": "^1.4.7",
+    "framework-utils": "^1.1.0",
+    "html-to-image": "^1.9.0",
+    "html2canvas": "^1.4.1",
+    "jquery": "^3.6.0",
+    "jszip": "^3.10.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "moveable": "^0.30.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-html5video": "^2.5.1",
+    "react-icons": "^4.4.0",
+    "react-images-uploading": "^3.1.6",
+    "react-meta-tags": "^1.0.1",
+    "react-modal": "^3.15.1",
+    "react-moveable": "^0.33.0",
+    "react-notifications": "^1.7.3",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-selecto": "^1.16.2",
+    "react-tooltip": "^4.2.21",
+    "scenejs": "^1.6.0",
+    "styled-components": "^5.3.5",
+    "subjx": "^1.0.0",
+    "swiper": "^8.2.4",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "server-install": "npm install --prefix server",
+    "server": "npm run server --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

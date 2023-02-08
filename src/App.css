@@ -1,0 +1,330 @@
+/*html {*/
+/*  height: calc(100vh - calc(100vh - 100%));*/
+/*}*/
+/*body {*/
+/*  min-height: 100vh;*/
+/*  !* mobile viewport bug fix *!*/
+/*  min-height: -webkit-fill-available;*/
+/*}*/
+html, body {
+  overflow: hidden;
+}
+body {
+  position: relative
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p {
+  margin: 0;
+  padding: 0;
+}
+.my-new-line {
+  white-space: pre-line;
+}
+@font-face {
+  font-family: 'Teko-Bold';
+  src: url('./assets/fonts/Teko/Teko-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Teko-Light';
+  src: url('./assets/fonts/Teko/Teko-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Teko-Medium';
+  src: url('./assets/fonts/Teko/Teko-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Teko-Regular';
+  src: url('./assets/fonts/Teko/Teko-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Teko-SemiBold';
+  src: url('./assets/fonts/Teko/Teko-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Teko-Bold';
+  src: url('./assets/fonts/Teko/Teko-Bold.ttf');
+}
+/*=====*/
+@font-face {
+  font-family: 'Rajdhani-Bold';
+  src: url('./assets/fonts/Teko/Teko-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Rajdhani-Light';
+  src: url('./assets/fonts/Rajdhani-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Rajdhani-Medium';
+  src: url('./assets/fonts/Teko/Teko-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Rajdhani-Regular';
+  src: url('./assets/fonts/Teko/Teko-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'pristina';
+  src: url('./assets/fonts/pristnia/PRISTINA.TTF');
+}
+
+@font-face {
+  font-family: 'motion-picture';
+  src: url('./assets/fonts/motion-picture/Motion\ Picture\ Personal\ Use\ \ 400.ttf');
+}
+
+@font-face {
+  font-family: 'delicia';
+  src: url('./assets/fonts/delicia/Delicia-8MyoD.otf');
+}
+
+@font-face {
+  font-family: 'luna-medium';
+  src: url('./assets/fonts/luna/Luna-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'fortnite';
+  src: url('./assets/fonts/fortnite/BurbankBigCondensed-Black.otf');
+}
+
+@font-face {
+  font-family: 'luckiest-guy';
+  src: url('./assets/fonts/luckiest-guy/LuckiestGuy.ttf');
+}
+
+@font-face {
+  font-family: 'call-of-duty';
+  src: url('./assets/fonts/call-of-duty/Call of Ops Duty.otf');
+}
+
+@font-face {
+  font-family: 'bazooka';
+  src: url('./assets/fonts/bazooka/bazooka-r.otf');
+}
+
+@font-face {
+  font-family: 'marker-felt';
+  src: url('./assets/fonts/marker-felt/marker-felt.ttf');
+}
+
+@font-face {
+  font-family: 'zapfino';
+  src: url('./assets/fonts/zapfino/ZapfinoExtraLT-One.otf');
+}
+
+@font-face {
+  font-family: 'abel';
+  src: url('./assets/fonts/abel/Abel-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'sofiapro';
+  src: url('./assets/fonts/sofiapro/sofiapro-light.otf');
+}
+
+@font-face {
+  font-family: 'bubblegum';
+  src: url('./assets/fonts/new_fonts/Bubblegum.ttf');
+}
+
+@font-face {
+  font-family: 'carnival';
+  src: url('./assets/fonts/new_fonts/Carnival.ttf');
+}
+
+@font-face {
+  font-family: 'hero';
+  src: url('./assets/fonts/new_fonts/Hero.ttf');
+}
+
+@font-face {
+  font-family: 'huntera';
+  src: url('./assets/fonts/new_fonts/Huntera.ttf');
+}
+
+@font-face {
+  font-family: 'mario';
+  src: url('./assets/fonts/new_fonts/Mario.ttf');
+}
+
+@font-face {
+  font-family: 'melted monster';
+  src: url('./assets/fonts/new_fonts/Melted Monster.ttf');
+}
+
+@font-face {
+  font-family: 'nightmare';
+  src: url('./assets/fonts/new_fonts/Nightmare.TTF');
+}
+
+@font-face {
+  font-family: 'strange story';
+  src: url('./assets/fonts/new_fonts/Strange Story.ttf');
+}
+.zoom-in-out-box
+{
+  animation: zoom-in-zoom-out 1s ease infinite;
+  z-index: 999;
+}
+.img-front-hover{
+  width: 100%;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #00CE71;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4.9% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+.dragDiv {
+  position: absolute;
+  background-color: blue;
+  z-index: 40;
+  padding: 30px;
+  margin: 0;
+}
+
+.moveable-direction {
+  width: 10px;
+  height: 10px;
+  top: 1px;
+  left: 2px;
+}
+
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #9370DB;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #BA55D3;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #FF00FF;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin {
+  0%   {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0%   {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
