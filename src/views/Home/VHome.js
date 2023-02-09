@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-import styled, {ThemeProvider} from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import Header from "../../components/Header/Header";
 import Tools from "../../components/Tools/Tools";
 import ViewArea from "../../components/ViewArea/ViewArea";
 import AppContext from "../../context/context";
 
-import {BsCheckLg} from 'react-icons/bs';
-import {TiTimes} from 'react-icons/ti';
+import { BsCheckLg } from 'react-icons/bs';
+import { TiTimes } from 'react-icons/ti';
 import MetaTags from 'react-meta-tags';
-import {DarkMode, DayMode} from "../../theme";
-import {OPTIONS_CAN_HAVE} from "../../assets/images/main_assets/cateImg/cate";
+import { DarkMode, DayMode } from "../../theme";
+import { OPTIONS_CAN_HAVE } from "../../assets/images/main_assets/cateImg/cate";
 import _ from "lodash";
 import axios from "axios";
 import JSZip from "jszip";
@@ -118,7 +118,7 @@ const VHome = (props) => {
             setRearDesign([0, 0])
             setRearDesignData(null)
         } else if (ind === 10) {
-            setRazorBackData({is_default: false})
+            setRazorBackData({ is_default: false })
         } else if (ind === 11) {
             setPaddle(null)
             setPaddleData(null)
@@ -160,8 +160,7 @@ const VHome = (props) => {
             setOptionTabSelect({})
             setOptionItemSelect({})
         }
-        if (isAll && ind < 16)
-        {
+        if (isAll && ind < 16) {
             func_reset(ind + 1, isAll)
         }
     }
@@ -224,7 +223,7 @@ const VHome = (props) => {
     const [rearDesignData, setRearDesignData] = React.useState(null);
     const [personalizationData, setPersonalizationData] = React.useState(null);
     const [remTechData, setRemTechData] = React.useState(null);
-    const [razorBackData, setRazorBackData] = React.useState({is_default: false});
+    const [razorBackData, setRazorBackData] = React.useState({ is_default: false });
     const [esportsData, setEsportsData] = React.useState(null);
     const [dtriggersData, setDtriggersData] = React.useState(null);
     const [textAndLogoData, setTextAndLogoData] = React.useState(null);
@@ -442,17 +441,17 @@ const VHome = (props) => {
 
         fontFamiles: [
             // {name: 'Motion Picture', family: 'motion-picture'},
-            {name: 'Bubblegum', family: 'bubblegum'},
+            { name: 'Bubblegum', family: 'bubblegum' },
             // {name: 'Carnival', family: 'carnival'},
-            {name: 'COD', family: 'call-of-duty'},
-            {name: 'Hero', family: 'hero'},
+            { name: 'COD', family: 'call-of-duty' },
+            { name: 'Hero', family: 'hero' },
             // {name: 'Huntera', family: 'huntera'},
-            {name: 'Mario', family: 'mario'},
-            {name: 'Melted Monster', family: 'melted monster'},
-            {name: 'Nightmare', family: 'nightmare'},
-            {name: 'Strange Story', family: 'strange story'},
-            {name: 'Pristina', family: 'pristina'},
-            {name: 'Fortnite', family: 'luckiest-guy'},
+            { name: 'Mario', family: 'mario' },
+            { name: 'Melted Monster', family: 'melted monster' },
+            { name: 'Nightmare', family: 'nightmare' },
+            { name: 'Strange Story', family: 'strange story' },
+            { name: 'Pristina', family: 'pristina' },
+            { name: 'Fortnite', family: 'luckiest-guy' },
             // {name: 'Delicia', family: 'delicia'},
             // {name: 'Luna', family: 'luna-medium'},
             // {name: 'Fortnite', family: 'fortnite'},
@@ -491,15 +490,13 @@ const VHome = (props) => {
             controllerId = 'byops5'
         else if (controllerId === 'byoxbxled')
             controllerId = 'byoxbx'
-        if (!_.isEmpty(assetsData))
-        {
+        if (!_.isEmpty(assetsData)) {
             const b64Img = assetsData[`${controllerId}/${type}/${name}.txt`]
             if (b64Img)
                 return null
         }
         const imgUrl = `https://builder.controllermodz.co.uk/${controllerId}/${type}${sub !== '' ? ('/' + sub) : ''}${domin8or !== '' ? ('/' + domin8or) : ''}/${name}.png`
-        if (type === 'design')
-        {
+        if (type === 'design') {
             const img = new Image()
             img.src = imgUrl
         }
@@ -515,44 +512,38 @@ const VHome = (props) => {
         return object.find(obj => obj.option_id.toString() === optionId.toString())
     }
     const getDetailItemByOptionValue = (optionValue, items) => {
-        if (!_.isArray(items))
-        {
+        if (!_.isArray(items)) {
             return null
         }
         let response = items[0].find(el => parseInt(el.option_type_id) === parseInt(optionValue))
         if (response)
-            return {item: response, inTab: 0, index: items[0].indexOf(response)}
+            return { item: response, inTab: 0, index: items[0].indexOf(response) }
 
-        if (items.length >= 2)
-        {
+        if (items.length >= 2) {
             response = items[1].find(el => parseInt(el.option_type_id) === parseInt(optionValue))
             if (response)
-                return {item: response, inTab: 1, index: items[1].indexOf(response)}
+                return { item: response, inTab: 1, index: items[1].indexOf(response) }
         }
         return null
     }
     useEffect(() => {
         getData().then()
     }, []);
-    function getCorrectQuoteItemData(quoteItemData)
-    {
+    function getCorrectQuoteItemData(quoteItemData) {
         if (!selectedController.item_id)
             return null
 
         return quoteItemData.find(item => item.item_id === selectedController.item_id)
     }
-    async function getData()
-    {
+    async function getData() {
         const json = await M2_getOptions(selectedController.id)
         if (json) {
             let quoteItemData = null
-            if (selectedController.quote_id)
-            {
+            if (selectedController.quote_id) {
                 quoteItemData = await M2_getProductByQuoteId(selectedController.quote_id)
-                if (quoteItemData)
-                {
+                if (quoteItemData) {
                     console.log('quoteItemData:', quoteItemData)
-                    console.log('selectedController:',selectedController)
+                    console.log('selectedController:', selectedController)
                     // if (quoteItemData && quoteItemData.length)
                     // {
                     //     if (!selectedController.item_id)
@@ -665,10 +656,8 @@ const VHome = (props) => {
             OPTIONS_CAN_HAVE(imageSetting, selectedController).forEach((optionObject, index) => {
                 const optionName = optionObject.name.toLowerCase()
                 let object_data_item = null
-                for (const item in object_data)
-                {
-                    if (object_data[item].title.toLowerCase() === optionName)
-                    {
+                for (const item in object_data) {
+                    if (object_data[item].title.toLowerCase() === optionName) {
                         object_data_item = object_data[item]
                         break
                     }
@@ -680,8 +669,7 @@ const VHome = (props) => {
                     items: [],
                     option_id: rootParentOptionId
                 }
-                if (rootParentOptionId)
-                {
+                if (rootParentOptionId) {
                     option.name = object_data_item.title
                     option.desc = object_data_item.desc
                     const subCategories = []
@@ -689,10 +677,8 @@ const VHome = (props) => {
                     let option_step_keys = Object.keys(option_step);
                     option_step_keys.forEach((stepItem, index) => {
                         const option_step_data = option_step[stepItem]
-                        if (option_step_data.sku && option_step_data.sku.trim())
-                        {
-                            if (!subCategories.includes(option_step_data.sku.trim()))
-                            {
+                        if (option_step_data.sku && option_step_data.sku.trim()) {
+                            if (!subCategories.includes(option_step_data.sku.trim())) {
                                 subCategories.push(option_step_data.sku.trim())
                             }
                             let image = option_step_data['extension_attributes']['images_data'] ? JSON.parse(option_step_data['extension_attributes']['images_data'])[0]['value'] : '';
@@ -716,8 +702,7 @@ const VHome = (props) => {
                             option.steps = subCategories
                             option.items[indexOf].push(optionItem)
                         }
-                        if (optionName === 'razorback maxfire')
-                        {
+                        if (optionName === 'razorback maxfire') {
                             const razorbacks = {
                                 name: object_data_item.title,
                                 desc: object_data_item.desc,
@@ -734,8 +719,7 @@ const VHome = (props) => {
                                 option.items[0] = []
                             option.items[0].push(razorbackData);
                         }
-                        else
-                        {
+                        else {
                             let ltemp = [];
                             const childs = option_step_data.childs ?? []
                             childs.forEach((child, childIndex) => {
@@ -755,14 +739,12 @@ const VHome = (props) => {
                                 });
                             })
                             option.option_id = rootParentOptionId
-                            if (childs.length)
-                            {
+                            if (childs.length) {
                                 //option.steps.push(temp);
                                 option.steps = subCategories
                                 option.items.push(ltemp);
                             }
-                            else if(subCategories.length === 0)
-                            {
+                            else if (subCategories.length === 0) {
                                 let image = option_step_data['extension_attributes']['images_data'] ? JSON.parse(option_step_data['extension_attributes']['images_data'])[0]['value'] : '';
                                 const temp = {
                                     name: option_step_data.title,
@@ -785,27 +767,24 @@ const VHome = (props) => {
                 }
                 optionsData_temp.push(option)
 
-                if (quoteItemData && quoteItemData.length && option.items && getCorrectQuoteItemData(quoteItemData))
-                {
+                if (quoteItemData && quoteItemData.length && option.items && getCorrectQuoteItemData(quoteItemData)) {
 
                     const itemOption = getCorrectQuoteItemData(quoteItemData)
                     const productOption = itemOption.product_option
                     const customOptions = productOption.extension_attributes.custom_options
                     const option_id = option.option_id
                     const foundItem = getItemByOptionId(option_id, customOptions)
-                    if (foundItem)
-                    {
+                    if (foundItem) {
                         const selectedItem = getDetailItemByOptionValue(foundItem.option_value, option.items)
-                        if (selectedItem)
-                        {
+                        if (selectedItem) {
                             partSelected[option.name] = selectedItem.name
-                            setPartSelected({...partSelected})
+                            setPartSelected({ ...partSelected })
 
                             optionTabSelect[option.name] = selectedItem.inTab
-                            setOptionTabSelect({...optionTabSelect});
+                            setOptionTabSelect({ ...optionTabSelect });
 
                             optionItemSelect[option.name] = selectedItem.index + (selectedItem.inTab === 1 ? 1000 : selectedItem.inTab)
-                            setOptionItemSelect({...optionItemSelect})
+                            setOptionItemSelect({ ...optionItemSelect })
                             if (optionObject.onClick)
                                 optionObject.onClick([selectedItem.inTab, selectedItem.index])
                         }
@@ -888,12 +867,10 @@ const VHome = (props) => {
             // --------------- raborback ---------------
             // setRazorbackData
             const razorbacks_ = await getOptionDataByKey(optionsData_temp, 'Razorback Maxfire')
-            if (razorbacks_.items.length)
-            {
+            if (razorbacks_.items.length) {
                 const razorbacks = razorbacks_.items[0][0]
                 const razorFound = getItemByOptionId(razorbacks_.option_id, customOptions)
-                if (razorFound)
-                {
+                if (razorFound) {
                     razorbacks.is_default = true
                 }
                 setRazorBackData(razorbacks)
@@ -908,40 +885,33 @@ const VHome = (props) => {
             //Preview Image & Logo Image
             const prevImageIndex = await getIndexByName('Preview Image', object_data, object_keys)
             const prevImageData = object_data[object_keys[prevImageIndex]];
-            if (prevImageData)
-            {
+            if (prevImageData) {
                 setPreviewImage(prevImageData)
             }
             const logoImageIndex = await getIndexByName('Logo Image', object_data, object_keys)
             const logoImageData = object_data[object_keys[logoImageIndex]];
-            if (logoImageData)
-            {
+            if (logoImageData) {
                 setLogoImage(logoImageData)
             }
 
             const perTextIndex = await getIndexByName('Personalization Text', object_data, object_keys)
             const perTextData = object_data[object_keys[perTextIndex]];
-            if (perTextData)
-            {
+            if (perTextData) {
                 setPerText(perTextData)
                 const perText = getItemByOptionId(perTextData.option_id, customOptions)
-                if (perText)
-                {
+                if (perText) {
                     setTextVal(perText.option_value)
                     setIsText(true);
                 }
             }
             const perFontIndex = await getIndexByName('Personalization Font', object_data, object_keys)
             const perFontData = object_data[object_keys[perFontIndex]];
-            if (perFontData)
-            {
+            if (perFontData) {
                 setPerFont(perFontData)
                 const perFont = getItemByOptionId(perFontData.option_id, customOptions)
-                if (perFont)
-                {
+                if (perFont) {
                     imageSetting.fontFamiles.forEach((font, index) => {
-                        if (font.name === perFont.option_value)
-                        {
+                        if (font.name === perFont.option_value) {
                             setFamily(index);
                         }
                     })
@@ -949,12 +919,10 @@ const VHome = (props) => {
             }
             const perColorIndex = await getIndexByName('Personalization Color', object_data, object_keys)
             const perColorData = object_data[object_keys[perColorIndex]];
-            if (perColorData)
-            {
+            if (perColorData) {
                 setPerColor(perColorData)
                 const perColor = getItemByOptionId(perColorData.option_id, customOptions)
-                if (perColor)
-                {
+                if (perColor) {
                     setTextColor(perColor.option_value)
                 }
             }
@@ -962,8 +930,7 @@ const VHome = (props) => {
             // --------------- esports ---------------
             const esportIndex = await getIndexByName('eSports', object_data, object_keys)
             let esport = object_data[object_keys[esportIndex]];
-            if (esport)
-            {
+            if (esport) {
                 let tempEsportData = {};
                 tempEsportData.name = esport.title;
                 tempEsportData.desc = esport.desc;
@@ -996,8 +963,7 @@ const VHome = (props) => {
                 const paddlesIndex = await esport_keys.map(key => {
                     return esport.values[key].title.trim()
                 }).indexOf('Paddles')
-                if (paddlesIndex >= 0)
-                {
+                if (paddlesIndex >= 0) {
                     let temp = esport.values[esport_keys[paddlesIndex]];
                     let paddles = {};
                     paddles.name = temp.title;
@@ -1022,14 +988,11 @@ const VHome = (props) => {
                     console.log('paddles:', paddles)
                     setPaddleData(paddles);
                     const paddleOptionSelectedValue = getItemByOptionId('PADDLE_OPTION_VALUE', customOptions)
-                    if (paddleOptionSelectedValue)
-                    {
+                    if (paddleOptionSelectedValue) {
                         setEsportsFlag(1);
-                        if (paddleOptionSelectedValue)
-                        {
+                        if (paddleOptionSelectedValue) {
                             const idx = paddles.items[0].map(el => parseInt(el.option_type_id)).indexOf(parseInt(paddleOptionSelectedValue.option_value))
-                            if (idx > -1)
-                            {
+                            if (idx > -1) {
                                 setPaddle([0, idx]);
                                 setLdomin1(null);
                                 setLdomin2(null);
@@ -1044,13 +1007,11 @@ const VHome = (props) => {
                 const dominoIndex = await esport_keys.map(key => {
                     return esport.values[key].title.trim()
                 }).indexOf('Domin8or Buttons')
-                if (dominoIndex >= 0)
-                {
+                if (dominoIndex >= 0) {
                     let temp = esport.values[esport_keys[dominoIndex]];
                     const dominSelectLeft = {};
                     const dominSelectRight = {};
-                    if (temp)
-                    {
+                    if (temp) {
                         const dominLeftItems = temp.childs.slice(0, 6)
                         const dominRightItems = temp.childs.slice(6, temp.childs.length)
                         dominSelectLeft.name = temp.title;
@@ -1093,28 +1054,23 @@ const VHome = (props) => {
 
                     const leftDominoSelected = getItemByOptionId('LEFT_DOMINO_OPTION_VALUE', customOptions)
                     const rightDominoSelected = getItemByOptionId('RIGHT_DOMINO_OPTION_VALUE', customOptions)
-                    if (leftDominoSelected || rightDominoSelected)
-                    {
+                    if (leftDominoSelected || rightDominoSelected) {
                         setEsportsFlag(2);
-                        if (leftDominoSelected)
-                        {
+                        if (leftDominoSelected) {
                             const indx = dominSelectLeft.items.map(item => {
                                 return parseInt(item.option_type_id)
                             }).indexOf(parseInt(leftDominoSelected.option_value))
-                            if (indx > -1)
-                            {
+                            if (indx > -1) {
                                 setLdomin1(indx)
                                 setLdomin2(indx)
                                 setPaddle(null)
                             }
                         }
-                        if (rightDominoSelected)
-                        {
+                        if (rightDominoSelected) {
                             const indx = dominSelectRight.items.map(item => {
                                 return parseInt(item.option_type_id)
                             }).indexOf(parseInt(rightDominoSelected.option_value))
-                            if (indx > -1)
-                            {
+                            if (indx > -1) {
                                 setRdomin1(indx)
                                 setRdomin2(indx)
                                 setPaddle(null)
@@ -1128,8 +1084,7 @@ const VHome = (props) => {
             // --------------- Smart Triggers ---------------
             // const [dtriggersData, ]
             const dTriggersIndex = await getIndexByName('Smart Triggers', object_data, object_keys)
-            if (dTriggersIndex > -1)
-            {
+            if (dTriggersIndex > -1) {
                 let dtriggers = {};
                 dtriggers.name = object_data[object_keys[dTriggersIndex]].title;
                 dtriggers.desc = object_data[object_keys[dTriggersIndex]].desc;
@@ -1140,13 +1095,12 @@ const VHome = (props) => {
                 dtriggers.option_type_id1 = object_data[object_keys[dTriggersIndex]].values[dtriggers_keys[1]].option_type_id;
                 //dtriggers.option_type_id2 = object_data[object_keys[dTriggersIndex]].values[dtriggers_keys[1]].option_type_id;
 
-                setDtriggersData({items: [dtriggers], key: 'smart triggers', name: 'Smart Triggers', steps: [], desc: ''});
+                setDtriggersData({ items: [dtriggers], key: 'smart triggers', name: 'Smart Triggers', steps: [], desc: '' });
                 setDigital_trigger(dtriggers.is_default);
                 setDigital_trigger_price(dtriggers.price);
 
                 const smartTriggerFound = getItemByOptionId(dtriggers.option_id, customOptions)
-                if (smartTriggerFound)
-                {
+                if (smartTriggerFound) {
                     setDigital_trigger(true);
                 }
 
@@ -1155,8 +1109,7 @@ const VHome = (props) => {
 
             // --------------- Remappable Technology ---------------
             const remTechIndex = await getIndexByName('Remappable Technology', object_data, object_keys)
-            if (remTechIndex > -1)
-            {
+            if (remTechIndex > -1) {
                 const remTechData_ = object_data[object_keys[remTechIndex]];
                 const remKeys = Object.keys(remTechData_.values)
                 const leftRemTech = remTechData_.values[remKeys[0]]
@@ -1170,22 +1123,23 @@ const VHome = (props) => {
 
             // --------------- Text and Logo ---------------
             const textAndLogoIndex = await getIndexByName('Personalization', object_data, object_keys)
-            if (textAndLogoIndex > -1)
-            {
+            if (textAndLogoIndex > -1) {
                 const per = object_data[object_keys[textAndLogoIndex]];
                 //console.log('perperperper:', per)
                 const per_value_keys = Object.keys(object_data[object_keys[textAndLogoIndex]].values);
-                const textAndLogoOptionData = {name: per.title, desc: per.desc, option_id: per.option_id, option_type_ids: {
+                const textAndLogoOptionData = {
+                    name: per.title, desc: per.desc, option_id: per.option_id, option_type_ids: {
                         no: per.values[per_value_keys[0]].option_type_id,
                         text: per.values[per_value_keys[1]].option_type_id,
                         logo: per.values[per_value_keys[2]].option_type_id
-                    }}
+                    }
+                }
                 setTextAndLogoData(textAndLogoOptionData);
                 let names = [];
                 names.push(per.title);
-                names.push({name: per.values[per_value_keys[0]].title, price: per.values[per_value_keys[0]].price});
-                names.push({name: per.values[per_value_keys[1]].title, price: per.values[per_value_keys[1]].price});
-                names.push({name: per.values[per_value_keys[2]].title, price: per.values[per_value_keys[2]].price});
+                names.push({ name: per.values[per_value_keys[0]].title, price: per.values[per_value_keys[0]].price });
+                names.push({ name: per.values[per_value_keys[1]].title, price: per.values[per_value_keys[1]].price });
+                names.push({ name: per.values[per_value_keys[2]].title, price: per.values[per_value_keys[2]].price });
                 setTextPrice(per.values[per_value_keys[1]].price);
                 setLogoPrice(per.values[per_value_keys[2]].price);
                 if (per.values[per_value_keys[1]].extension_attributes.is_default)
@@ -1196,19 +1150,15 @@ const VHome = (props) => {
                 setPersonalizationData(names);
 
                 const perFound = getItemByOptionId(per.option_id, customOptions)
-                if (perFound)
-                {
-                    if (parseInt(perFound.option_value) === parseInt(per.values[per_value_keys[1]].option_type_id))
-                    {
+                if (perFound) {
+                    if (parseInt(perFound.option_value) === parseInt(per.values[per_value_keys[1]].option_type_id)) {
                         const perText = getItemByOptionId('PERSONALIZATION_TEXT', customOptions)
-                        if (perText)
-                        {
+                        if (perText) {
                             setTextVal(perText.option_value)
                             setIsText(true);
                         }
                     }
-                    else if (parseInt(perFound.option_value) === parseInt(per.values[per_value_keys[2]].option_type_id))
-                    {
+                    else if (parseInt(perFound.option_value) === parseInt(per.values[per_value_keys[2]].option_type_id)) {
                         setLogo(true);
                     }
                     console.log('per.values[per_value_keys[1]]per.values[per_value_keys[1]]:', per.values[per_value_keys[1]])
@@ -1250,14 +1200,14 @@ const VHome = (props) => {
                         <MetaTags>
                             <title>{selectedController.title}</title>
                             <meta name="description" content="Controller Modz is the home of build-your-own custom modded controllers for  Playstation 5, Playstation 4 and Xbox One" />
-                            <meta name="keywords" content="Build Your Own PS4 Controller, Custom Controllers PS4, Custom Gaming Controllers, Custom xbox 360 Controllers, Design PS4 Controller, Design Your Own PS4 Controller, modded controllers, PS4 Custom Controllers, Xbox One Custom Controllers, xbox design lab, ps4 design lab"/>
+                            <meta name="keywords" content="Build Your Own PS4 Controller, Custom Controllers PS4, Custom Gaming Controllers, Custom xbox 360 Controllers, Design PS4 Controller, Design Your Own PS4 Controller, modded controllers, PS4 Custom Controllers, Xbox One Custom Controllers, xbox design lab, ps4 design lab" />
                             <meta property="og:title" content={`${selectedController.title}`} />
                         </MetaTags>
                         <Wrapper>
-                            <Header modeChange={modeChange} flag='1' menuSelected={selectedController}/>
+                            <Header modeChange={modeChange} flag='1' menuSelected={selectedController} />
                             <MainDiv pl={h_header}>
-                                <ViewArea controllerId={selectedController.id}/>
-                                <Tools selectedController={selectedController}/>
+                                <ViewArea controllerId={selectedController.id} />
+                                <Tools selectedController={selectedController} />
                             </MainDiv>
                             <Modal flag={modal_flag} flag1={true}>
                                 <div>
@@ -1265,13 +1215,13 @@ const VHome = (props) => {
                                         Tips for uploading an image for controller logo
                                     </h1>
                                     <MoConItem>
-                                        <h1><BsCheckLg/>File size</h1>
+                                        <h1><BsCheckLg />File size</h1>
                                         <p>
                                             File size must be smaller than 2MB
                                         </p>
                                     </MoConItem>
                                     <MoConItem>
-                                        <h1><BsCheckLg/>File type</h1>
+                                        <h1><BsCheckLg />File type</h1>
                                         <p>
                                             Only available Jpeg, Png, SVG
                                         </p>
@@ -1280,12 +1230,12 @@ const VHome = (props) => {
                                         Okay
                                     </MoOkay>
                                     <HideModal onClick={() => setModalFlag(false)}>
-                                        <TiTimes/>
+                                        <TiTimes />
                                     </HideModal>
                                 </div>
                             </Modal>
                             <Modal flag={modal_desc}>
-                                <div style={{maxHeight: '80%', overflow: 'auto'}}>
+                                <div style={{ maxHeight: '80%', overflow: 'auto' }}>
                                     <h1>
                                         {selectedOption && selectedOption.name}
                                     </h1>
@@ -1296,7 +1246,7 @@ const VHome = (props) => {
                                         Okay
                                     </MoOkay>
                                     <HideModal onClick={() => setModalDesc(false)}>
-                                        <TiTimes/>
+                                        <TiTimes />
                                     </HideModal>
                                 </div>
                             </Modal>
@@ -1307,18 +1257,18 @@ const VHome = (props) => {
         }
         {
             (ledDataLoading || dataLoading || !designData) && (
-                <div id="preloader" style={{zIndex: 1000}}>
+                <div id="preloader" style={{ zIndex: 1000 }}>
                     {/*<div id="loader"/>*/}
-                    <div style={{backgroundColor: '#292c33',  width: '100%', alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100%'}}>
-                        <img src={require('../../assets/images/main_assets/Preloader.gif')} style={{alignSelf: 'center', width: 200}} />
+                    <div style={{ backgroundColor: '#292c33', width: '100%', alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100%' }}>
+                        <img src={require('../../assets/images/main_assets/Preloader.gif')} style={{ alignSelf: 'center', width: 200 }} />
                     </div>
                 </div>
             )
         }
         {
-            copiedUrl && <div id="preloader" style={{zIndex: 1000}}>
-                <div style={{backgroundColor: '#292c33', opacity: 0.9, width: '100%', alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100%'}}>
-                    <span style={{color: '#03cf62', fontWeight: 'bold', fontSize: 25}}>{copiedUrl}</span>
+            copiedUrl && <div id="preloader" style={{ zIndex: 1000 }}>
+                <div style={{ backgroundColor: '#292c33', opacity: 0.9, width: '100%', alignItems: 'center', justifyContent: 'center', display: 'flex', height: '100%' }}>
+                    <span style={{ color: '#03cf62', fontWeight: 'bold', fontSize: 25 }}>{copiedUrl}</span>
                 </div>
             </div>
         }

@@ -40,6 +40,13 @@ const Router = () => {
 
     return (
         <Routes>
+            <Route path='/' element={<VHome selectedController={{
+                title: 'Build Your Own Playstation 5 Controller',
+                id: 'byops5',
+                quote_id,
+                item_id,
+                iniPrice: 63.99
+            }}/>}/>
             <Route path='/byops5' element={<VHome selectedController={{
                 title: 'Build Your Own Playstation 5 Controller',
                 id: 'byops5',

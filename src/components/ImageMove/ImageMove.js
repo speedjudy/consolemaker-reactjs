@@ -2,19 +2,19 @@ import * as React from "react";
 import Moveable from "react-moveable";
 import styled from "styled-components";
 import AppContext from "../../context/context";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 export default function ImageMove(props) {
-    const {isXbox} = props
+	const { isXbox } = props
 	const myContext = React.useContext(AppContext);
-  const [target, setTarget] = React.useState();
-  const [frame] = React.useState({
-    translate: [0, 0],
-    rotate: 0
-  });
-  const moveableRef = React.useRef();
-  React.useEffect(() => {
-    const target = document.querySelector('.target');
+	const [target, setTarget] = React.useState();
+	const [frame] = React.useState({
+		translate: [0, 0],
+		rotate: 0
+	});
+	const moveableRef = React.useRef();
+	React.useEffect(() => {
+		const target = document.querySelector('.target');
 		if (target !== null) {
 			setTarget(target);
 
@@ -24,19 +24,20 @@ export default function ImageMove(props) {
 				}, 2000);
 			});
 		}
-  }, [myContext.images]);
-  return (
-    <Wrapper display={myContext.isLogo} sideflag={myContext.sideflag || isXbox}>
-      {
+	}, [myContext.images]);
+	return (
+		<Wrapper display={myContext.isLogo} sideflag={myContext.sideflag || isXbox}>
+			{
 				myContext.images.length !== 0 ? (
-					<img alt="no img" id="imagemove" src={myContext.images[0]['data_url']} style={{zIndex: "300", margin: "0px auto",position: "relative", display: "block"}} className="target"/>
-				) : (() => {})()
+					<img alt="no img" id="imagemove" src={myContext.images[0]['data_url']} style={{ zIndex: "300", margin: "0px auto", position: "relative", display: "block" }} className="target" />
+				) : (() => { })()
 			}
 			{
 				myContext.isLogo && myContext.images.length > 0 && (myContext.sideflag || isXbox) && myContext.imgStatus ?
 					<Moveable
 						ref={moveableRef}
 						target={target}
+						zoom={0.6}
 						draggable={true}
 						throttleDrag={0}
 						resizable={true}
@@ -68,16 +69,15 @@ export default function ImageMove(props) {
 							frame.rotate = beforeRotate;
 						}}
 						onRender={({ target }) => {
-							target.style.transform = `translate(${frame.translate[0]}px, ${
-								frame.translate[1]
-							}px) rotate(${frame.rotate}deg)`;
+							target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]
+								}px) rotate(${frame.rotate}deg)`;
 						}}
 						renderDirections={["nw", "ne", "se", "sw"]}
 					/>
-				: (() => {})()
+					: (() => { })()
 			}
-    </Wrapper>
-  );
+		</Wrapper>
+	);
 }
 
 
@@ -89,11 +89,9 @@ const Wrapper = styled.div`
 	display: ${props => props.display ? 'contents' : 'none'};
 	transition: all 1s;
 	width: 100%;
-	.moveable-control-box {
-		position: fixed !important;
-		top: 65px;
-		left: unset;
-	}
+	
+	
+	
 	img {
 		display: inline-block;
 		cursor: grab;
