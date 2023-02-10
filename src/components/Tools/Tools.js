@@ -410,7 +410,7 @@ const Tools = (props) => {
             //window.location.href = 'https://controllermodz.co.uk/checkout/cart/';
 
         }).catch(err => {
-            alert(err.message)
+            // alert(err.message)
         })
     }
 
@@ -789,6 +789,7 @@ const Tools = (props) => {
                                             {
                                                 myContext.esportsFlag === 1 ? (
                                                     <div>
+                                                        {myContext.razorBackData.is_default&& <p style={{fontSize:13, color:'grey'}}>Not compatible with Razorback Maxfire</p>}
                                                         <Selector>
                                                             {
                                                                 myContext.paddleData != null ?

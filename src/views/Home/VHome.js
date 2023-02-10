@@ -677,6 +677,7 @@ const VHome = (props) => {
                     let option_step_keys = Object.keys(option_step);
                     option_step_keys.forEach((stepItem, index) => {
                         const option_step_data = option_step[stepItem]
+                        
                         if (option_step_data.sku && option_step_data.sku.trim()) {
                             if (!subCategories.includes(option_step_data.sku.trim())) {
                                 subCategories.push(option_step_data.sku.trim())
@@ -1190,7 +1191,7 @@ const VHome = (props) => {
             setTheme(DarkMode);
         }
     }
-
+    console.log(esportsFlag, "____________________________", partSelected);
     return <>
         {
             (designData && !dataLoading) &&
