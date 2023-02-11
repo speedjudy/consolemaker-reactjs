@@ -297,7 +297,7 @@ const ViewArea = (props) => {
                         </div>
                         <button style={{ cursor: 'pointer' }} onClick={() => {
                           myContext.setImages([])
-                        }}><img src={require('../../assets/images/delete_bin_icon.png')} width={15} height={15} /></button>
+                        }}><img className="deleteImg" src={require('../../assets/images/delete_bin_icon.png')} width={15} height={15} /></button>
                       </div>
                     </SpecialArea>}
                 </div>
@@ -733,7 +733,7 @@ const SpecialArea = styled.div`
       outline: ${props => (props.sf && props.si === true) ? '2px dotted red' : 'none'};
       @media only screen and (max-width: 393px) { 
        outline: ${props => (props.sf && props.si === true) ? '1px dotted red' : 'none'};
-        top: ${props => props.top ? (props.top === '15%' ? '6%' : '14%') : '6%'};
+        top: ${props => props.top ? (props.top === '15%' ? '6%' : '12%') : '6%'};
       }
       width: 24%;
       overflow: hidden;
