@@ -1,22 +1,22 @@
-import React, {useEffect, useRef, useState} from "react";
-import styled, {css} from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { css } from "styled-components";
 import html2canvas from 'html2canvas';
 
 import ImageUploading from 'react-images-uploading';
-import {NotificationContainer} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import {BsCheck} from 'react-icons/bs';
+import { BsCheck } from 'react-icons/bs';
 
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 
-import {FaTimes} from 'react-icons/fa';
-import {FiUpload} from 'react-icons/fi';
-import {AiOutlineStop} from 'react-icons/ai';
-import {BsChevronRight, BsChevronLeft} from 'react-icons/bs';
+import { FaTimes } from 'react-icons/fa';
+import { FiUpload } from 'react-icons/fi';
+import { AiOutlineStop } from 'react-icons/ai';
+import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import downloadjs from "downloadjs";
-import {MarkImg, MarkHoverImg, RazorbackSelectImg, NoImg} from "../../assets/images";
+import { MarkImg, MarkHoverImg, RazorbackSelectImg, NoImg } from "../../assets/images";
 import copy from 'copy-to-clipboard';
 import {
     PaddleImg,
@@ -31,11 +31,11 @@ import AppContext from "../../context/context";
 import "swiper/css";
 import _ from 'lodash'
 import moment from "moment";
-import {API_ENDPOINT, M2_getQuoteId, M2_postAddProduct, M2_postUpdateProduct} from "./API_GetOption";
+import { API_ENDPOINT, M2_getQuoteId, M2_postAddProduct, M2_postUpdateProduct } from "./API_GetOption";
 
-import {useLocation} from "react-router";
+import { useLocation } from "react-router";
 function useQuery() {
-    const {search} = useLocation();
+    const { search } = useLocation();
     return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
@@ -82,7 +82,7 @@ let rear_design_pro_black_index_deleting_item = -1
 let rear_design_pro_white_deleting_item = null
 let rear_design_pro_white_index_deleting_item = -1
 const Tools = (props) => {
-    const {selectedController} = props
+    const { selectedController } = props
 
     const [proBlackOrWhiteSelected, setProBlackOrWhiteSelected] = useState(false)
     const font_zoom = [0.7, 0.7, 1, 0.7, 0.7, 0.7];
@@ -163,8 +163,7 @@ const Tools = (props) => {
         }).then(async (canvas) => {
             console.log('====Canvas done====')
             let quoteId = selectedController.quote_id
-            if (_.isEmpty(quoteId) || isShare)
-            {
+            if (_.isEmpty(quoteId) || isShare) {
                 quoteId = await M2_getQuoteId()
             }
             const dataURL = canvas.toDataURL('image/png');
@@ -200,8 +199,7 @@ const Tools = (props) => {
                     }
                 }
             }
-            if (selectedController.item_id && !isShare)
-            {
+            if (selectedController.item_id && !isShare) {
                 totalData.itemId = selectedController.item_id
             }
             //console.log(JSON.stringify(totalData));
@@ -225,8 +223,7 @@ const Tools = (props) => {
                     flagIndex = 1
                 }
                 // const optionValue = myContext.esportsData.values[flagIndex].option_type_id
-                if (myContext.paddleData && myContext.paddle && myContext.paddleData.items && myContext.paddleData.items.length)
-                {
+                if (myContext.paddleData && myContext.paddle && myContext.paddleData.items && myContext.paddleData.items.length) {
                     const selectedOptionValue = myContext.paddleData.items[myContext.paddle[0]][myContext.paddle[1]].option_type_id
                     const selectedOptionId = myContext.paddleData.items[myContext.paddle[0]][myContext.paddle[1]].option_id
                     totalData.cartItem.productOption.extensionAttributes.customOptions.push(
@@ -240,8 +237,7 @@ const Tools = (props) => {
                         }
                     )
                 }
-                if (myContext.ldomin_1 !== null && myContext.dominSelectLeftData && myContext.dominSelectLeftData.items && myContext.dominSelectLeftData.items.length)
-                {
+                if (myContext.ldomin_1 !== null && myContext.dominSelectLeftData && myContext.dominSelectLeftData.items && myContext.dominSelectLeftData.items.length) {
                     const selectedOptionValue = myContext.dominSelectLeftData.items[myContext.ldomin_1].option_type_id
                     const selectedOptionId = myContext.dominSelectLeftData.items[myContext.ldomin_1].option_id
                     totalData.cartItem.productOption.extensionAttributes.customOptions.push(
@@ -255,8 +251,7 @@ const Tools = (props) => {
                         }
                     )
                 }
-                if (myContext.rdomin_1 !== null && myContext.dominSelectRightData && myContext.dominSelectRightData.items && myContext.dominSelectRightData.items.length)
-                {
+                if (myContext.rdomin_1 !== null && myContext.dominSelectRightData && myContext.dominSelectRightData.items && myContext.dominSelectRightData.items.length) {
                     const selectedOptionValue = myContext.dominSelectRightData.items[myContext.rdomin_1].option_type_id
                     const selectedOptionId = myContext.dominSelectRightData.items[myContext.rdomin_1].option_id
                     totalData.cartItem.productOption.extensionAttributes.customOptions.push(
@@ -321,8 +316,7 @@ const Tools = (props) => {
                             }
                         )
                     }
-                    else
-                    {
+                    else {
                         // totalData.cartItem.productOption.extensionAttributes.customOptions.push(
                         //     {
                         //         optionId: 'PERSONALIZATION_TEXT',
@@ -330,8 +324,7 @@ const Tools = (props) => {
                         //     }
                         // )
 
-                        if (myContext.perText)
-                        {
+                        if (myContext.perText) {
                             totalData.cartItem.productOption.extensionAttributes.customOptions.push(
                                 {
                                     optionId: myContext.perText.option_id,
@@ -339,8 +332,7 @@ const Tools = (props) => {
                                 }
                             )
                         }
-                        if (myContext.perFont)
-                        {
+                        if (myContext.perFont) {
                             totalData.cartItem.productOption.extensionAttributes.customOptions.push(
                                 {
                                     optionId: myContext.perFont.option_id,
@@ -348,8 +340,7 @@ const Tools = (props) => {
                                 }
                             )
                         }
-                        if (myContext.perColor)
-                        {
+                        if (myContext.perColor) {
                             totalData.cartItem.productOption.extensionAttributes.customOptions.push(
                                 {
                                     optionId: myContext.perColor.option_id,
@@ -362,8 +353,7 @@ const Tools = (props) => {
                 totalData.cartItem.productOption.extensionAttributes.customOptions.push(textAndLogoOption)
             }
 
-            if (myContext.previewImage && !isShare)
-            {
+            if (myContext.previewImage && !isShare) {
                 totalData.cartItem.productOption.extensionAttributes.customOptions.push(
                     {
                         optionId: myContext.previewImage.option_id,
@@ -392,14 +382,13 @@ const Tools = (props) => {
                 //alert(`${API_ENDPOINT()}/modz/cart/index?quote=${quoteId}`)
                 window.location.href = `${API_ENDPOINT()}/modz/cart/index?quote=${quoteId}`;
             }
-            else if(isShare)
-            {
+            else if (isShare) {
                 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
                 if (!isSafari)
                     myContext.setCopiedUrl('Copied URL!')
 
                 const shareUrl = `${window.location.origin}/${totalData.cartItem.sku}?q=${quoteId}&id=${res.item_id}&s=true`
-                copy(shareUrl, {message: 'Copy the url shown below'})
+                copy(shareUrl, { message: 'Copy the url shown below' })
                 setTimeout(() => {
                     myContext.setCopiedUrl(null)
                 }, 2000)
@@ -410,7 +399,7 @@ const Tools = (props) => {
             //window.location.href = 'https://controllermodz.co.uk/checkout/cart/';
 
         }).catch(err => {
-            // alert(err.message)
+            alert(err.message)
         })
     }
 
@@ -423,6 +412,7 @@ const Tools = (props) => {
                 }
             }
         })
+        // console.log(cateOptions, 'options');
         return cateOptions
     }
     const findIndexOfItemInRearDesign = (rear_design = [], name = '') => {
@@ -434,22 +424,19 @@ const Tools = (props) => {
 
         setProBlackOrWhiteSelected(myContext.rearDesign && (myContext.rearDesign[1] === indx_pro_black || myContext.rearDesign[1] === indx_pro_white))
 
-        if (myContext.ldomin_2 || myContext.rdomin_2)
-        {
+        if (myContext.ldomin_2 || myContext.rdomin_2) {
             const rear_design = myContext.rearDesignData
             let deletingItem = rear_design.items[0][indx_pro_black]
             // let deletingItemWhite = rear_design.items[0][indx_pro_white - 1]
             let deletingItemWhite = rear_design.items[0][indx_pro_white]
-            if (deletingItem)
-            {
+            if (deletingItem) {
                 rear_design_pro_black_index_deleting_item = indx_pro_black
                 rear_design_pro_black_deleting_item = deletingItem
                 rear_design.items[0].splice(indx_pro_black, 1)
 
                 myContext.setRearDesignData(_.cloneDeep(rear_design))
             }
-            if (deletingItemWhite)
-            {
+            if (deletingItemWhite) {
                 rear_design_pro_white_index_deleting_item = indx_pro_white
                 rear_design_pro_white_deleting_item = deletingItemWhite
                 // rear_design.items[0].splice(indx_pro_white - 1, 1)
@@ -457,8 +444,7 @@ const Tools = (props) => {
                 myContext.setRearDesignData(_.cloneDeep(rear_design))
             }
         }
-        else if(rear_design_pro_black_deleting_item || rear_design_pro_white_deleting_item)
-        {
+        else if (rear_design_pro_black_deleting_item || rear_design_pro_white_deleting_item) {
             setProBlackOrWhiteSelected(false)
 
             const rear_design = myContext.rearDesignData
@@ -497,10 +483,8 @@ const Tools = (props) => {
         //     myContext.setShowTextAndLogo(false)
         //     options_manual_show.splice(0, 1)
         // }
-
         const menuItems = cateOptions.concat(options_manual_show)
-        if (!_.isEmpty(myContext.paddle))
-        {
+        if (!_.isEmpty(myContext.paddle)) {
             menuItems.splice(menuItems.length - 4, 1)
         }
 
@@ -508,11 +492,17 @@ const Tools = (props) => {
             menuItems.splice(menuItems.length - 2, 1)
         }
 
+        if (myContext.razorBackData.is_default) {
+            // menuItems.splice(menuItems.length - 6, 1)
+            // myContext.partSelected[cateOption.name] = item.name ?? ''
+            // myContext.setPartSelected({ ...myContext.partSelected })
+        }
+
         myContext.setMenuItems(menuItems)
 
     }, [myContext.design, myContext.paddle, myContext.abxy, myContext.dpad, myContext.thumbstickL, myContext.thumbstickR,
-        myContext.startBtn, myContext.touchpad, myContext.trim, myContext.trigger, myContext.esportsFlag, myContext.razorBackData, myContext.digital_trigger,
-        myContext.grips, myContext.guide, myContext.led, myContext.lbRb, myContext.rearDesign, myContext.ldomin_2, myContext.rdomin_2])
+    myContext.startBtn, myContext.touchpad, myContext.trim, myContext.trigger, myContext.esportsFlag, myContext.razorBackData, myContext.digital_trigger,
+    myContext.grips, myContext.guide, myContext.led, myContext.lbRb, myContext.rearDesign, myContext.ldomin_2, myContext.rdomin_2])
 
     useEffect(() => {
         const totalPrice = Math.abs((myContext.initalPrice +
@@ -552,16 +542,12 @@ const Tools = (props) => {
     const totalSummaryItems = () => {
         const options = getMainOptions()
         let total = 0
-        for (const item of options)
-        {
-            if (item.selectionData && item.data)
-            {
-                if (item.data.items && item.data.items.length && item.selectionData[1] > 0)
-                {
+        for (const item of options) {
+            if (item.selectionData && item.data) {
+                if (item.data.items && item.data.items.length && item.selectionData[1] > 0) {
                     total += 1
                 }
-                else
-                {
+                else {
                     total += (myContext.razorBackData.is_default && item.data.name === 'Razorback Maxfire') ? 1 : 0
                     total += (myContext.esportsFlag > 0 && item.data.name === 'eSports') ? 1 : 0
                     total += (myContext.digital_trigger === true && item.data.name === 'Smart Triggers') ? 1 : 0
@@ -572,12 +558,19 @@ const Tools = (props) => {
         total += (myContext.textAndLogoData && (myContext.isText || myContext.isLogo)) ? 1 : 0
         return total
     }
+
+    const currentCate = myContext.menuItems[myContext.snapIndex]
+
+    let isDisabled = (currentCate?.name == 'eSports' && myContext?.razorBackData.is_default) ||
+        (currentCate?.name == 'Personalization' && !myContext?.personalizationData) ||
+        (currentCate?.name == 'Razorback Maxfire' && !_.isEmpty(myContext?.paddle))
+
     return (
         <Wrapper>
-            <NotificationContainer/>
+            <NotificationContainer />
             <Menu mf={menuFlag}>
                 <Remove onClick={() => setMenuFlag(false)}>
-                    <span><FaTimes/></span>
+                    <span><FaTimes /></span>
                 </Remove>
                 <MenuBody>
                     {
@@ -587,13 +580,13 @@ const Tools = (props) => {
                                 await swiperTo(index);
                             }} me={index} curr={myContext.snapIndex} stat={isMenuSelected(item.selectionData)}>
                                 {
-                                    item.faFont ? item.faFont : <img alt="no img" src={item.image} style={{transform: `scale(${item.zoom})`}}/>
+                                    item.faFont ? item.faFont : <img alt="no img" src={item.image} style={{ transform: `scale(${item.zoom})` }} />
                                 }
 
                                 {
                                     item.name
                                 }
-                                <SBsCheck/>
+                                <SBsCheck />
                             </MenuItem>
                         })
                     }
@@ -602,24 +595,24 @@ const Tools = (props) => {
             </Menu>
             <TopDiv>
                 <div>
-                    <progress id="file" max={myContext.menuItems.length} value={myContext.snapIndex + 1}/>
+                    <progress id="file" max={myContext.menuItems.length} value={myContext.snapIndex + 1} />
                 </div>
                 <div>
                     <div>
                         {
                             (myContext.snapIndex < myContext.menuItems.length - 1) ? <>
                                 {myContext.menuItems.length &&
-                                <img alt="no img" src={myContext.menuItems[myContext.snapIndex].image}
-                                     style={{transform: `scale(${myContext.menuItems[myContext.snapIndex].zoom + 0.4})`}}/>
+                                    <img alt="no img" src={myContext.menuItems[myContext.snapIndex].image}
+                                        style={{ transform: `scale(${myContext.menuItems[myContext.snapIndex].zoom + 0.4})` }} />
                                 }
-                                <span style={{display: (myContext.snapIndex === myContext.menuItems.length - 1) ? 'none' : 'flex'}}>
+                                <span style={{ display: (myContext.snapIndex === myContext.menuItems.length - 1) ? 'none' : 'flex' }}>
                                     {myContext.menuItems.length && <span>{myContext.menuItems[myContext.snapIndex].name}</span>}
                                     {/** Mobile Steps Sub selection */}
                                     {
                                         (myContext.selectedOption && myContext.selectedOption.data && myContext.selectedOption.data.steps && myContext.selectedOption.data.steps.length) ?
                                             <MobileSelector onChange={(e) => {
                                                 myContext.optionTabSelect[myContext.selectedOption.name] = e.target.value
-                                                myContext.setOptionTabSelect({...myContext.optionTabSelect});
+                                                myContext.setOptionTabSelect({ ...myContext.optionTabSelect });
                                             }}>
                                                 {myContext.selectedOption.data.steps.map((title, index) => {
                                                     return <option key={index} value={index}>
@@ -633,24 +626,23 @@ const Tools = (props) => {
                             </> : null
                         }
                     </div>
-                <div>
-            <span style={{cursor: 'pointer'}} onClick={() => myContext.setModalDesc(true)}>
-              {/* <MdOutlineDescription onClick={() => myContext.setModalDesc(true)}></MdOutlineDescription> */}
-                <i style={{fontSize: 25, color: '#00ce71'}} className="fa fa-info-circle"/>
-            </span>
-            <span onClick={() => setMenuFlag(!menuFlag)}>
-              <i className="fa fa-bars"/>
-            </span>
+                    <div>
+                        <span style={{ cursor: 'pointer' }} onClick={() => myContext.setModalDesc(true)}>
+                            {/* <MdOutlineDescription onClick={() => myContext.setModalDesc(true)}></MdOutlineDescription> */}
+                            <i style={{ fontSize: 25, color: '#00ce71' }} className="fa fa-info-circle" />
+                        </span>
+                        <span onClick={() => setMenuFlag(!menuFlag)}>
+                            <i className="fa fa-bars" />
+                        </span>
                         <span className="prev" onClick={() => swiperPrev()}>
-              <BsChevronLeft/>
-            </span>
+                            <BsChevronLeft />
+                        </span>
                         <span className="next" onClick={() => swiperNext()}>
-              <BsChevronRight/>
-            </span>
+                            <BsChevronRight />
+                        </span>
                     </div>
                 </div>
             </TopDiv>
-
             <MediumDiv ref={middRef}>
                 <Swiper
                     onSwiper={s => {
@@ -659,7 +651,7 @@ const Tools = (props) => {
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
                     simulateTouch={false}
-                    scrollbar={{draggable: true}}
+                    scrollbar={{ draggable: true }}
                     allowTouchMove={false}
                     onSlideChange={async (event) => {
                         const ind = event.snapIndex;
@@ -673,36 +665,29 @@ const Tools = (props) => {
                         } else {
                             await myContext.setSideflag(true);
                         }
-                        if (item.data && item.data.items)
-                        {
+                        if (item.data && item.data.items) {
                             const items = item.data.items.length === 2 ? item.data.items[0].concat(item.data.items[1]) : item.data.items[0]
-                            if (_.isArray(items))
-                            {
+                            if (_.isArray(items)) {
                                 items.forEach(anItem => {
-                                    if (anItem.image)
-                                    {
+                                    if (anItem.image) {
                                         const img = new Image()
                                         img.src = anItem.image
                                     }
-                                    else if (anItem.image_back)
-                                    {
+                                    else if (anItem.image_back) {
                                         const img = new Image()
                                         img.src = anItem.image_back
                                     }
                                 })
                             }
                         }
-                        else if(item.name.toLowerCase() === 'esports')
-                        {
-                            if (myContext.paddleData && myContext.paddleData.items && myContext.paddleData.items.length)
-                            {
+                        else if (item.name.toLowerCase() === 'esports') {
+                            if (myContext.paddleData && myContext.paddleData.items && myContext.paddleData.items.length) {
                                 myContext.paddleData.items[0].forEach(anItem => {
                                     const img = new Image()
                                     img.src = anItem.image_back
                                 })
                             }
-                            if (myContext.dominSelectLeftData && myContext.dominSelectLeftData.items && myContext.dominSelectLeftData.items.length)
-                            {
+                            if (myContext.dominSelectLeftData && myContext.dominSelectLeftData.items && myContext.dominSelectLeftData.items.length) {
                                 myContext.dominSelectLeftData.items.forEach(anItem => {
                                     const cloneItem = _.cloneDeep(anItem)
                                     const imgLeftUrl = cloneItem.image_back.replace('@LEFT_RIGHT@', 'left')
@@ -737,42 +722,42 @@ const Tools = (props) => {
 
                                                     myContext.setEsportsFlag(0);
                                                     myContext.partSelected[cateOption.name] = 'No (Default)'
-                                                    myContext.setPartSelected({...myContext.partSelected})
+                                                    myContext.setPartSelected({ ...myContext.partSelected })
                                                 }}>
                                                     <div>
-                                                        <AiOutlineStop/>
+                                                        <AiOutlineStop />
                                                     </div>
                                                     <div>
                                                         No (Default)
                                                     </div>
                                                     <div>
-                                                        <SBsCheck/>
+                                                        <SBsCheck />
                                                     </div>
                                                 </EsportItems>
                                                 {myContext.paddleData ?
                                                     <EsportItems flag={myContext.esportsFlag === 1} onClick={() => {
                                                         myContext.setEsportsFlag(1);
                                                         myContext.partSelected[cateOption.name] = 'Paddles'
-                                                        myContext.setPartSelected({...myContext.partSelected})
+                                                        myContext.setPartSelected({ ...myContext.partSelected })
                                                     }}>
                                                         <div>
-                                                            <img alt="no img" src={PaddleImg} style={{width: '60px'}}/>
+                                                            <img alt="no img" src={PaddleImg} style={{ width: '60px' }} />
                                                         </div>
                                                         <div>
                                                             Paddles
                                                         </div>
                                                         <div>
-                                                            <SBsCheck/>
+                                                            <SBsCheck />
                                                         </div>
                                                     </EsportItems> : null}
                                                 {myContext.dominSelectLeftData && !proBlackOrWhiteSelected ?
                                                     <EsportItems flag={myContext.esportsFlag === 2} onClick={() => {
                                                         myContext.setEsportsFlag(2);
                                                         myContext.partSelected[cateOption.name] = myContext.dominSelectLeftData.name ?? ''
-                                                        myContext.setPartSelected({...myContext.partSelected})
+                                                        myContext.setPartSelected({ ...myContext.partSelected })
                                                     }}>
                                                         <div>
-                                                            <img alt="no img" src={DominLimg}/>
+                                                            <img alt="no img" src={DominLimg} />
                                                         </div>
                                                         <div>
                                                             {
@@ -780,7 +765,7 @@ const Tools = (props) => {
                                                             }
                                                         </div>
                                                         <div>
-                                                            <SBsCheck/>
+                                                            <SBsCheck />
                                                         </div>
                                                     </EsportItems> : null}
                                             </div>
@@ -789,7 +774,7 @@ const Tools = (props) => {
                                             {
                                                 myContext.esportsFlag === 1 ? (
                                                     <div>
-                                                        {myContext.razorBackData.is_default&& <p style={{fontSize:13, color:'grey'}}>Not compatible with Razorback Maxfire</p>}
+                                                        {myContext.razorBackData.is_default === true && <p style={{ fontSize: 13, color: 'grey', paddingLeft: 8 }}><i>Paddles are not compatible with Razorback Maxfire*</i></p>}
                                                         <Selector>
                                                             {
                                                                 myContext.paddleData != null ?
@@ -810,7 +795,7 @@ const Tools = (props) => {
                                                                                     myContext.setRdomin1(null);
                                                                                     myContext.setRdomin2(null);
                                                                                     myContext.partSelected[cateOption.name] = item.name ?? ''
-                                                                                    myContext.setPartSelected({...myContext.partSelected})
+                                                                                    myContext.setPartSelected({ ...myContext.partSelected })
                                                                                 }}
                                                                                 onMouseOver={async () => await myContext.setHoverImg(item)}
                                                                                 onMouseLeave={async () => await myContext.setHoverImg(null)}
@@ -836,9 +821,9 @@ const Tools = (props) => {
                                             {
                                                 myContext.esportsFlag === 2 ? (
                                                     <div>
-                                                        <span style={{display: 'flex', color: 'gray', marginBottom: 20, fontSize: 16, fontFamily: 'abel'}}>Rumble motors are removed as standard*</span>
+                                                        <span style={{ display: 'flex', color: 'gray', marginBottom: 20, fontSize: 16, fontFamily: 'abel' }}>Rumble motors are removed as standard*</span>
                                                         <UnderlinedDiv>
-                                                            <img alt="no img" src={DominLimg}/>
+                                                            <img alt="no img" src={DominLimg} />
                                                             Left Domin8or Button
                                                         </UnderlinedDiv>
                                                         <Selector width={'100%'} gap={'12px'}>
@@ -854,15 +839,14 @@ const Tools = (props) => {
                                                                                 onClick={() => {
                                                                                     myContext.setLdomin1(index)
                                                                                     myContext.partSelected[cateOption.name] = item.name ?? ''
-                                                                                    myContext.setPartSelected({...myContext.partSelected})
+                                                                                    myContext.setPartSelected({ ...myContext.partSelected })
 
                                                                                     myContext.setLdomin2(index);
                                                                                     myContext.setPaddle(null);
                                                                                 }}
                                                                                 onMouseOver={async () => {
                                                                                     const cloneItem = _.cloneDeep(item)
-                                                                                    if (cloneItem.image_back.includes('@LEFT_RIGHT@'))
-                                                                                    {
+                                                                                    if (cloneItem.image_back.includes('@LEFT_RIGHT@')) {
                                                                                         cloneItem.image_back = cloneItem.image_back.replace('@LEFT_RIGHT@', 'left')
                                                                                     }
                                                                                     await myContext.setHoverImg(cloneItem)
@@ -880,7 +864,7 @@ const Tools = (props) => {
 
                                                         {/* RDominBtn */}
                                                         <UnderlinedDiv>
-                                                            <img alt="no img" src={DominRImg}/>
+                                                            <img alt="no img" src={DominRImg} />
                                                             Right Domin8or Button
                                                         </UnderlinedDiv>
                                                         <Selector width={'100%'} gap={'12px'}>
@@ -896,15 +880,14 @@ const Tools = (props) => {
                                                                                 onClick={() => {
                                                                                     myContext.setRdomin1(index)
                                                                                     myContext.partSelected[cateOption.name] = item.name ?? ''
-                                                                                    myContext.setPartSelected({...myContext.partSelected})
+                                                                                    myContext.setPartSelected({ ...myContext.partSelected })
 
                                                                                     myContext.setRdomin2(index);
                                                                                     myContext.setPaddle(null);
                                                                                 }}
                                                                                 onMouseOver={async () => {
                                                                                     const cloneItem = _.cloneDeep(item)
-                                                                                    if (cloneItem.image_back.includes('@LEFT_RIGHT@'))
-                                                                                    {
+                                                                                    if (cloneItem.image_back.includes('@LEFT_RIGHT@')) {
                                                                                         cloneItem.image_back = cloneItem.image_back.replace('@LEFT_RIGHT@', 'right')
                                                                                     }
                                                                                     await myContext.setHoverImg(cloneItem)
@@ -925,9 +908,9 @@ const Tools = (props) => {
                                                                 <CusSwitch flag={myContext.remap} onClick={() => {
                                                                     myContext.setRemap(!myContext.remap)
                                                                     myContext.partSelected[cateOption.name] = `${myContext.remTechData.items[0].title} £${!myContext.remap ? myContext.remTechData.items[0].price : '0.00'}`
-                                                                    myContext.setPartSelected({...myContext.partSelected})
+                                                                    myContext.setPartSelected({ ...myContext.partSelected })
                                                                 }}>
-                                                                    <div/>
+                                                                    <div />
                                                                 </CusSwitch>
                                                                 <h6>{myContext.remTechData.items[0].title} £{myContext.remTechData.items[0].price}</h6>
                                                                 <MarkDiv>
@@ -941,136 +924,136 @@ const Tools = (props) => {
                                 </SwiperSlide>
                                 : (cateOption.name === 'Smart Triggers') ?
                                     <SwiperSlide
-                                        style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
-                                        <Hr/>
+                                        style={{ display: "flex", flexDirection: "column", alignItems: 'center' }}>
+                                        <Hr />
                                         <RozorBack>
                                             <div>
                                                 <RozorItem flag={!myContext.digital_trigger}
-                                                           onClick={() => {
-                                                               myContext.setDigital_trigger(false)
-                                                               myContext.partSelected[cateOption.name] = 'No (Default)'
-                                                               myContext.setPartSelected({...myContext.partSelected})
-                                                           }}>
+                                                    onClick={() => {
+                                                        myContext.setDigital_trigger(false)
+                                                        myContext.partSelected[cateOption.name] = 'No (Default)'
+                                                        myContext.setPartSelected({ ...myContext.partSelected })
+                                                    }}>
 
                                                     <AiOutlineStop style={{
                                                         width: '55px',
                                                         height: '36px'
-                                                    }}/>
-                                                    <h1 style={{color: !myContext.digital_trigger ? '#00ce71' : '#fff'}}>No
+                                                    }} />
+                                                    <h1 style={{ color: !myContext.digital_trigger ? '#00ce71' : '#fff' }}>No
                                                         (Default)</h1>
-                                                    <span><BsCheck/></span>
+                                                    <span><BsCheck /></span>
                                                 </RozorItem>
                                                 <RozorItem flag={myContext.digital_trigger}
-                                                           onClick={() => {
-                                                               myContext.setDigital_trigger(true)
-                                                               myContext.partSelected[cateOption.name] = 'Add Smart Trigger'
-                                                               myContext.setPartSelected({...myContext.partSelected})
-                                                           }}>
-                                                    <img height={45} src={DTriggerImg} alt="img"/>
-                                                    <h1 style={{color: myContext.digital_trigger ? '#00ce71' : '#fff'}}>Add
+                                                    onClick={() => {
+                                                        myContext.setDigital_trigger(true)
+                                                        myContext.partSelected[cateOption.name] = 'Add Smart Trigger'
+                                                        myContext.setPartSelected({ ...myContext.partSelected })
+                                                    }}>
+                                                    <img height={45} src={DTriggerImg} alt="img" />
+                                                    <h1 style={{ color: myContext.digital_trigger ? '#00ce71' : '#fff' }}>Add
                                                         Smart Trigger {`£${myContext.digital_trigger_price}`}</h1>
-                                                    <span><BsCheck/></span>
+                                                    <span><BsCheck /></span>
                                                 </RozorItem>
                                             </div>
                                         </RozorBack>
                                     </SwiperSlide>
                                     : (cateOption.name === 'Razorback Maxfire' && myContext.razorBackData.data) ?
                                         <SwiperSlide
-                                            style={{display: "flex", flexDirection: "column", alignItems: 'center'}}>
-                                            <Hr/>
-                                            {(selectedController.id === 'byops5' || selectedController.id === 'byops5led') ? <span style={{display: 'flex', width: '100%', textAlign: 'left', color: 'gray', marginLeft: 40, marginTop: 20, fontSize: 16, fontFamily: 'abel'}}>Rapid Fire is not compatible with Smart Triggers*</span> : null}
+                                            style={{ display: "flex", flexDirection: "column", alignItems: 'center' }}>
+                                            <Hr />
+                                            {(selectedController.id === 'byops5' || selectedController.id === 'byops5led') ? <span style={{ display: 'flex', width: '100%', textAlign: 'left', color: 'gray', marginLeft: 40, marginTop: 20, fontSize: 16, fontFamily: 'abel' }}>Rapid Fire is not compatible with Smart Triggers*</span> : null}
                                             <RozorBack>
                                                 <div>
                                                     <RozorItem flag={!myContext.razorBackData.is_default}
-                                                               onClick={() => {
-                                                                   const razorBackData = myContext.razorBackData
-                                                                   razorBackData.is_default = false
-                                                                   myContext.setRazorBackData({...razorBackData})
-                                                                   myContext.partSelected[cateOption.name] = 'No (Default)'
-                                                                   myContext.setPartSelected({...myContext.partSelected})
-                                                               }}>
+                                                        onClick={() => {
+                                                            const razorBackData = myContext.razorBackData
+                                                            razorBackData.is_default = false
+                                                            myContext.setRazorBackData({ ...razorBackData })
+                                                            myContext.partSelected[cateOption.name] = 'No (Default)'
+                                                            myContext.setPartSelected({ ...myContext.partSelected })
+                                                        }}>
 
                                                         <AiOutlineStop style={{
                                                             width: '55px',
                                                             height: '36px'
-                                                        }}/>
-                                                        <h1 style={{color: !myContext.razorBackData.is_default ? '#00ce71' : '#fff'}}>No
+                                                        }} />
+                                                        <h1 style={{ color: !myContext.razorBackData.is_default ? '#00ce71' : '#fff' }}>No
                                                             (Default)</h1>
-                                                        <span><BsCheck/></span>
+                                                        <span><BsCheck /></span>
                                                     </RozorItem>
                                                     <RozorItem flag={myContext.razorBackData.is_default}
-                                                               onClick={() => {
-                                                                   const razorBackData = myContext.razorBackData
-                                                                   razorBackData.is_default = true
-                                                                   myContext.setRazorBackData({...razorBackData})
-                                                                   myContext.partSelected[cateOption.name] = `Razorback Maxfire £${myContext.razorBackData.price}`
-                                                                   myContext.setPartSelected({...myContext.partSelected})
-                                                               }}>
+                                                        onClick={() => {
+                                                            const razorBackData = myContext.razorBackData
+                                                            razorBackData.is_default = true
+                                                            myContext.setRazorBackData({ ...razorBackData })
+                                                            myContext.partSelected[cateOption.name] = `Razorback Maxfire £${myContext.razorBackData.price}`
+                                                            myContext.setPartSelected({ ...myContext.partSelected })
+                                                        }}>
                                                         <img alt='razor selection' src={RazorbackSelectImg}
-                                                             style={{width: '90%'}}/>
-                                                        <h1 style={{color: myContext.razorBackData.is_default ? '#00ce71' : '#fff'}}>Add
+                                                            style={{ width: '90%' }} />
+                                                        <h1 style={{ color: myContext.razorBackData.is_default ? '#00ce71' : '#fff' }}>Add
                                                             £{myContext.razorBackData.price}</h1>
-                                                        <span><BsCheck/></span>
+                                                        <span><BsCheck /></span>
                                                     </RozorItem>
                                                 </div>
                                             </RozorBack>
                                         </SwiperSlide> :
                                         <SwiperSlide
-                                            style={{display: "flex", flexDirection: "column"}}>
+                                            style={{ display: "flex", flexDirection: "column" }}>
                                             {(cateOption.data && cateOption.data.steps && cateOption.data.steps.length) ?
                                                 <TopItems>
                                                     {
                                                         cateOption.data.steps.map((title, index) => {
                                                             return (
                                                                 <TapItem key={index} keys={index}
-                                                                         w={cateOption.data.steps.length}
-                                                                         active={myContext.optionTabSelect[cateOption.name] ?? 0}
-                                                                         onClick={() => {
-                                                                             myContext.optionTabSelect[cateOption.name] = index
-                                                                             myContext.setOptionTabSelect({...myContext.optionTabSelect});
-                                                                         }}>
-                                                                        <span>
-                                                                          {title}
-                                                                        </span>
-                                                                                                                {/* <span>
+                                                                    w={cateOption.data.steps.length}
+                                                                    active={myContext.optionTabSelect[cateOption.name] ?? 0}
+                                                                    onClick={() => {
+                                                                        myContext.optionTabSelect[cateOption.name] = index
+                                                                        myContext.setOptionTabSelect({ ...myContext.optionTabSelect });
+                                                                    }}>
+                                                                    <span>
+                                                                        {title}
+                                                                    </span>
+                                                                    {/* <span>
                                                                           £{ item.price }
                                                                         </span> */}
-                                                                    <div/>
+                                                                    <div />
                                                                 </TapItem>
                                                             )
                                                         })
                                                     }
                                                 </TopItems> : null
                                             }
-                                            <Hr/>
+                                            <Hr />
                                             {cateOption.data && cateOption.data.items && cateOption.data.items.length &&
-                                            <Selector id="design_topitems">
-                                                {
-                                                    cateOption.data.items[myContext.optionTabSelect[cateOption.name] ?? 0].map((item, index) => (
-                                                        <SelectItemPrice me={myContext.optionItemSelect[cateOption.name] ?? 0} now={index + (myContext.optionTabSelect[cateOption.name] ?? 0)} title={item.name}>
-                                                            <SelectItem
-                                                                bgImg={item.selet}
-                                                                key={index}
-                                                                now={index + ((myContext.optionTabSelect[cateOption.name] && myContext.optionTabSelect[cateOption.name] === 1 ? 1000 : myContext.optionTabSelect[cateOption.name]) ?? 0)}
-                                                                me={myContext.optionItemSelect[cateOption.name] ?? 0}
-                                                                onClick={() => {
-                                                                    myContext.partSelected[cateOption.name] = item.name
-                                                                    myContext.setPartSelected({...myContext.partSelected})
-                                                                    myContext.optionItemSelect[cateOption.name] = index + ((myContext.optionTabSelect[cateOption.name] && myContext.optionTabSelect[cateOption.name] === 1 ? 1000 : myContext.optionTabSelect[cateOption.name]) ?? 0)
-                                                                    myContext.setOptionItemSelect({...myContext.optionItemSelect})
-                                                                    cateOption.onClick([myContext.optionTabSelect[cateOption.name] ?? 0, index])
-                                                                }}
-                                                                onMouseOver={async () => await myContext.setHoverImg(item)}
-                                                                onMouseLeave={async () => await myContext.setHoverImg(null)}
-                                                            >
-                                                                {(item.desc && (item.desc.toUpperCase() === 'NEW' || item.desc.toUpperCase() === 'SALE')) && <NewBanner isSale={item.desc.toUpperCase() === 'SALE'}>{item.desc.toUpperCase()}</NewBanner>}
-                                                            </SelectItem>
-                                                            {'£' + item.price}
+                                                <Selector id="design_topitems">
+                                                    {
+                                                        cateOption.data.items[myContext.optionTabSelect[cateOption.name] ?? 0].map((item, index) => (
+                                                            <SelectItemPrice me={myContext.optionItemSelect[cateOption.name] ?? 0} now={index + (myContext.optionTabSelect[cateOption.name] ?? 0)} title={item.name}>
+                                                                <SelectItem
+                                                                    bgImg={item.selet}
+                                                                    key={index}
+                                                                    now={index + ((myContext.optionTabSelect[cateOption.name] && myContext.optionTabSelect[cateOption.name] === 1 ? 1000 : myContext.optionTabSelect[cateOption.name]) ?? 0)}
+                                                                    me={myContext.optionItemSelect[cateOption.name] ?? 0}
+                                                                    onClick={() => {
+                                                                        myContext.partSelected[cateOption.name] = item.name
+                                                                        myContext.setPartSelected({ ...myContext.partSelected })
+                                                                        myContext.optionItemSelect[cateOption.name] = index + ((myContext.optionTabSelect[cateOption.name] && myContext.optionTabSelect[cateOption.name] === 1 ? 1000 : myContext.optionTabSelect[cateOption.name]) ?? 0)
+                                                                        myContext.setOptionItemSelect({ ...myContext.optionItemSelect })
+                                                                        cateOption.onClick([myContext.optionTabSelect[cateOption.name] ?? 0, index])
+                                                                    }}
+                                                                    onMouseOver={async () => await myContext.setHoverImg(item)}
+                                                                    onMouseLeave={async () => await myContext.setHoverImg(null)}
+                                                                >
+                                                                    {(item.desc && (item.desc.toUpperCase() === 'NEW' || item.desc.toUpperCase() === 'SALE')) && <NewBanner isSale={item.desc.toUpperCase() === 'SALE'}>{item.desc.toUpperCase()}</NewBanner>}
+                                                                </SelectItem>
+                                                                {'£' + item.price}
 
-                                                        </SelectItemPrice>
-                                                    ))
-                                                }
-                                            </Selector>
+                                                            </SelectItemPrice>
+                                                        ))
+                                                    }
+                                                </Selector>
                                             }
                                         </SwiperSlide>
                         })
@@ -1083,153 +1066,153 @@ const Tools = (props) => {
 
                     {/**TEXT and LOGO*/}
                     {(myContext.personalizationData) &&
-                    <SwiperSlide>
-                        <EsportsWrapper>
-                            <EsportsContainer>
-                                <div>
-                                    <EsportItems flag={!myContext.isText && !myContext.isLogo} onClick={() => {
-                                        myContext.setIsText(false);
-                                        myContext.setLogo(false);
-                                    }}>
-                                        <div>
-                                            {/* <AiOutlineStop></AiOutlineStop> */}
-                                            <img alt='no' src={NoImg}/>
-                                        </div>
-                                        <div>
-                                            {
-                                                myContext.personalizationData[1].name ?? ''
-                                            }
-                                        </div>
-                                        <div>
-                                            <SBsCheck/>
-                                        </div>
-                                    </EsportItems>
-                                    <EsportItems flag={myContext.isText} onClick={() => {
-                                        myContext.setIsText(true);
-                                        myContext.setLogo(false);
-                                    }}>
-                                        <div>
-                                            <img alt="no img" src={TextImg}
-                                                 style={{width: '45px', marginRight: '5px'}}/>
-                                            {
-                                                myContext.personalizationData[2].name ?? ''
-                                            }
-                                        </div>
-                                        <div>
-                                            £{
-                                            myContext.textPrice
-                                        }
-                                        </div>
-                                        <div>
-                                            <SBsCheck/>
-                                        </div>
-                                    </EsportItems>
-                                    <EsportItems flag={myContext.isLogo} onClick={() => {
-                                        myContext.setIsText(false);
-                                        myContext.setLogo(true);
-                                    }}>
-                                        <div>
-                                            {OPTIONS_MANUAL_SHOW(selectedController).length &&
-                                            <img alt="no img" src={OPTIONS_MANUAL_SHOW(selectedController)[0].image}
-                                                 style={{marginRight: '5px'}}/>}
-                                            {
-                                                myContext.personalizationData[3].name ?? ''
-                                            }
-                                        </div>
-                                        <div>
-                                            £{
-                                            myContext.logoPrice
-                                        }
-                                        </div>
-                                        <div>
-                                            <SBsCheck/>
-                                        </div>
-                                    </EsportItems>
-                                </div>
-
-                                {
-                                    !myContext.isText ? (() => {
-                                    })() : (
-                                        <TextDiv>
-                                            <input type="text" className="added-text" maxLength="14"
-                                                   value={myContext.textVal} onChange={(e) => {
-                                                myContext.setTextVal(e.target.value);
-                                                if (e.target.value.length > 0) {
-                                                    myContext.setTxtStatus(true);
-                                                }
-                                            }} placeholder={"Enter text here"}/>
-                                            <select className="font-type" onChange={(e) => {
-                                                myContext.setFamily(e.target.value[0]);
-                                                console.log(e.target.value[0]);
-                                            }}>
-                                                <FontOption value={0}>Font</FontOption>
+                        <SwiperSlide>
+                            <EsportsWrapper>
+                                <EsportsContainer>
+                                    <div>
+                                        <EsportItems flag={!myContext.isText && !myContext.isLogo} onClick={() => {
+                                            myContext.setIsText(false);
+                                            myContext.setLogo(false);
+                                        }}>
+                                            <div>
+                                                {/* <AiOutlineStop></AiOutlineStop> */}
+                                                <img alt='no' src={NoImg} />
+                                            </div>
+                                            <div>
                                                 {
-                                                    myContext.fontFamiles.map((item, index) => (
-                                                        <FontOption selected={myContext.familyId === index} family={item.family} key={index} value={[index, font_zoom[index]]}>
-                                                            {item.name}
-                                                        </FontOption>
-                                                    ))
+                                                    myContext.personalizationData[1].name ?? ''
                                                 }
-                                            </select>
-                                            <select className="font-type"
-                                                    onChange={(e) => myContext.setTextColor(e.target.value)}>
-                                                <option selected={myContext.textColor === 'black'} value='black'>Font Colour</option>
-                                                <option selected={myContext.textColor === 'black'} value='black'>Black</option>
-                                                <option selected={myContext.textColor === 'white'} value='white'>White</option>
-                                                <option selected={myContext.textColor === '#e10088'} value='#e10088'>Pink</option>
-                                                <option selected={myContext.textColor === '#006dd9'} value='#006dd9'>Blue</option>
-                                                <option selected={myContext.textColor === '#cc0000'} value='#cc0000'>Red</option>
-                                                <option selected={myContext.textColor === '#f9f737'} value='#f9f737'>Yellow</option>
-                                                <option selected={myContext.textColor === '#008001'} value='#008001'>Green</option>
-                                            </select>
-                                        </TextDiv>
-                                    )
-                                }
+                                            </div>
+                                            <div>
+                                                <SBsCheck />
+                                            </div>
+                                        </EsportItems>
+                                        <EsportItems flag={myContext.isText} onClick={() => {
+                                            myContext.setIsText(true);
+                                            myContext.setLogo(false);
+                                        }}>
+                                            <div>
+                                                <img alt="no img" src={TextImg}
+                                                    style={{ width: '45px', marginRight: '5px' }} />
+                                                {
+                                                    myContext.personalizationData[2].name ?? ''
+                                                }
+                                            </div>
+                                            <div>
+                                                £{
+                                                    myContext.textPrice
+                                                }
+                                            </div>
+                                            <div>
+                                                <SBsCheck />
+                                            </div>
+                                        </EsportItems>
+                                        <EsportItems flag={myContext.isLogo} onClick={() => {
+                                            myContext.setIsText(false);
+                                            myContext.setLogo(true);
+                                        }}>
+                                            <div>
+                                                {OPTIONS_MANUAL_SHOW(selectedController).length &&
+                                                    <img alt="no img" src={OPTIONS_MANUAL_SHOW(selectedController)[0].image}
+                                                        style={{ marginRight: '5px' }} />}
+                                                {
+                                                    myContext.personalizationData[3].name ?? ''
+                                                }
+                                            </div>
+                                            <div>
+                                                £{
+                                                    myContext.logoPrice
+                                                }
+                                            </div>
+                                            <div>
+                                                <SBsCheck />
+                                            </div>
+                                        </EsportItems>
+                                    </div>
 
-                                {/* Logo */}
-                                {
-                                    myContext.isLogo ? <>
+                                    {
+                                        !myContext.isText ? (() => {
+                                        })() : (
+                                            <TextDiv>
+                                                <input type="text" className="added-text" maxLength="14"
+                                                    value={myContext.textVal} onChange={(e) => {
+                                                        myContext.setTextVal(e.target.value);
+                                                        if (e.target.value.length > 0) {
+                                                            myContext.setTxtStatus(true);
+                                                        }
+                                                    }} placeholder={"Enter text here"} />
+                                                <select className="font-type" onChange={(e) => {
+                                                    myContext.setFamily(e.target.value[0]);
+                                                    console.log(e.target.value[0]);
+                                                }}>
+                                                    <FontOption value={0}>Font</FontOption>
+                                                    {
+                                                        myContext.fontFamiles.map((item, index) => (
+                                                            <FontOption selected={myContext.familyId === index} family={item.family} key={index} value={[index, font_zoom[index]]}>
+                                                                {item.name}
+                                                            </FontOption>
+                                                        ))
+                                                    }
+                                                </select>
+                                                <select className="font-type"
+                                                    onChange={(e) => myContext.setTextColor(e.target.value)}>
+                                                    <option selected={myContext.textColor === 'black'} value='black'>Font Colour</option>
+                                                    <option selected={myContext.textColor === 'black'} value='black'>Black</option>
+                                                    <option selected={myContext.textColor === 'white'} value='white'>White</option>
+                                                    <option selected={myContext.textColor === '#e10088'} value='#e10088'>Pink</option>
+                                                    <option selected={myContext.textColor === '#006dd9'} value='#006dd9'>Blue</option>
+                                                    <option selected={myContext.textColor === '#cc0000'} value='#cc0000'>Red</option>
+                                                    <option selected={myContext.textColor === '#f9f737'} value='#f9f737'>Yellow</option>
+                                                    <option selected={myContext.textColor === '#008001'} value='#008001'>Green</option>
+                                                </select>
+                                            </TextDiv>
+                                        )
+                                    }
+
+                                    {/* Logo */}
+                                    {
+                                        myContext.isLogo ? <>
                                             <span>
-                                              <ImgDiv>
-                                                <UploadImg
-                                                    onClick={() => {
-                                                        myContext.setModalFlag(true);
-                                                        // onImageUpload()
-                                                    }}
-                                                >
-                                                  <span><FiUpload/></span>
-                                                  <h1>Click To Upload Image</h1>
-                                                  <h1>Maximum file size 2MB</h1>
-                                                </UploadImg>
-                                              <ImageUploading
-                                                  value={myContext.images}
-                                                  onChange={onChange}
-                                                  maxNumber={maxNumber}
-                                                  dataURLKey="data_url"
-                                                  // acceptType={['jpg', 'gif', 'png']}
-                                                  // maxFileSize={1024 * 1024 * 2}
-                                              >
-                                                {({
-                                                      imageList,
-                                                      onImageUpload,
-                                                      isDragging,
-                                                      dragProps,
-                                                  }) => (
-                                                    // write your building UI
+                                                <ImgDiv>
                                                     <UploadImg
-                                                        style={isDragging ? {color: 'red'} : undefined}
-                                                        onClick={onImageUpload}
-                                                        id="file_selector"
-                                                        {...dragProps}
+                                                        onClick={() => {
+                                                            myContext.setModalFlag(true);
+                                                            // onImageUpload()
+                                                        }}
                                                     >
+                                                        <span><FiUpload /></span>
+                                                        <h1>Click To Upload Image</h1>
+                                                        <h1>Maximum file size 2MB</h1>
                                                     </UploadImg>
-                                                )}
-                                              </ImageUploading>
-                                            </ImgDiv>
-                                          </span>
+                                                    <ImageUploading
+                                                        value={myContext.images}
+                                                        onChange={onChange}
+                                                        maxNumber={maxNumber}
+                                                        dataURLKey="data_url"
+                                                    // acceptType={['jpg', 'gif', 'png']}
+                                                    // maxFileSize={1024 * 1024 * 2}
+                                                    >
+                                                        {({
+                                                            imageList,
+                                                            onImageUpload,
+                                                            isDragging,
+                                                            dragProps,
+                                                        }) => (
+                                                            // write your building UI
+                                                            <UploadImg
+                                                                style={isDragging ? { color: 'red' } : undefined}
+                                                                onClick={onImageUpload}
+                                                                id="file_selector"
+                                                                {...dragProps}
+                                                            >
+                                                            </UploadImg>
+                                                        )}
+                                                    </ImageUploading>
+                                                </ImgDiv>
+                                            </span>
                                             {
-                                                PRE_EXISTING.length > 0 ? <div style={{padding: 10, marginTop: 10, display: 'inline-block'}}>
-                                                    <span style={{height: 35,fontFamily: 'Teko-Regular',fontSize: 16, color: '#fff'}}>Or select from our pre-existing</span>
+                                                PRE_EXISTING.length > 0 ? <div style={{ padding: 10, marginTop: 10, display: 'inline-block' }}>
+                                                    <span style={{ height: 35, fontFamily: 'Teko-Regular', fontSize: 16, color: '#fff' }}>Or select from our pre-existing</span>
                                                     <Selector padding={'15px 15px'} id="design_topitems">
                                                         {
                                                             PRE_EXISTING.map((item, index) => (
@@ -1242,7 +1225,7 @@ const Tools = (props) => {
                                                                         me={myContext.optionItemSelect['personalization'] ?? 0}
                                                                         onClick={() => {
                                                                             myContext.optionItemSelect['personalization'] = index + (myContext.optionTabSelect['personalization'] ?? 0)
-                                                                            myContext.setOptionItemSelect({...myContext.optionItemSelect})
+                                                                            myContext.setOptionItemSelect({ ...myContext.optionItemSelect })
                                                                             toDataURL(item.image)
                                                                                 .then(data_url => {
                                                                                     myContext.setImages([{
@@ -1251,19 +1234,19 @@ const Tools = (props) => {
                                                                                     myContext.setImgStatus(true);
                                                                                 })
                                                                         }}
-                                                                        // onMouseOver={async () => {
-                                                                        //     toDataURL(item.image)
-                                                                        //         .then(data_url => {
-                                                                        //             myContext.setImages([{
-                                                                        //                 data_url
-                                                                        //             }]);
-                                                                        //             myContext.setImgStatus(true);
-                                                                        //         })
-                                                                        // }}
-                                                                        // onMouseLeave={async () => await myContext.setHoverImg(null)}
+                                                                    // onMouseOver={async () => {
+                                                                    //     toDataURL(item.image)
+                                                                    //         .then(data_url => {
+                                                                    //             myContext.setImages([{
+                                                                    //                 data_url
+                                                                    //             }]);
+                                                                    //             myContext.setImgStatus(true);
+                                                                    //         })
+                                                                    // }}
+                                                                    // onMouseLeave={async () => await myContext.setHoverImg(null)}
                                                                     >
                                                                     </SelectItem>
-                                                                    <span style={{fontFamily: 'Teko-Regular', fontSize: 16, color: '#fff'}}>{item.title}</span>
+                                                                    <span style={{ fontFamily: 'Teko-Regular', fontSize: 16, color: '#fff' }}>{item.title}</span>
                                                                 </SelectItemPrice>
                                                             ))
                                                         }
@@ -1271,16 +1254,16 @@ const Tools = (props) => {
                                                 </div> : null
                                             }
                                         </>
-                                    : null
-                                }
-                            </EsportsContainer>
-                        </EsportsWrapper>
-                    </SwiperSlide>
+                                            : null
+                                    }
+                                </EsportsContainer>
+                            </EsportsWrapper>
+                        </SwiperSlide>
                     }
-                    <SwiperSlide style={{alignItems: 'center', flexDirection: 'column', justifyContent: 'center', display: 'flex'}}>
+                    <SwiperSlide style={{ alignItems: 'center', flexDirection: 'column', justifyContent: 'center', display: 'flex' }}>
                         <AddToCartDiv>
-                            <button style={{cursor: 'pointer'}} onClick={() => AddToCart()}>
-                                <p style={{height: 30}}>{(selectedController.quote_id === null || isShare || _.isNaN(selectedController.item_id)) ? 'ADD  TO  CART' : 'UPDATE  CART'}</p>
+                            <button style={{ cursor: 'pointer' }} onClick={() => AddToCart()}>
+                                <p style={{ height: 30 }}>{(selectedController.quote_id === null || isShare || _.isNaN(selectedController.item_id)) ? 'ADD  TO  CART' : 'UPDATE  CART'}</p>
                                 <p style={{
                                     height: 35,
                                     fontFamily: 'Teko-Regular',
@@ -1290,41 +1273,39 @@ const Tools = (props) => {
                         <div onClick={() => {
                             myContext.setCopiedUrl('GENERATING...')
                             AddToCart(true).then()
-                        }} style={{color: '#ffffff', fontFamily: 'Teko-Regular', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center'}}>
+                        }} style={{ color: '#ffffff', fontFamily: 'Teko-Regular', fontSize: 18, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                             Share my design
-                            <img width={30} style={{marginBottom: 5}} src={require('../../assets/images/share_icon.png')}/>
+                            <img width={30} style={{ marginBottom: 5 }} src={require('../../assets/images/share_icon.png')} />
                         </div>
                         {
-                            (myContext.selectedOption && myContext.selectedOption.name === 'Add to cart') && <div style={{width: '90%', padding: 20, columns: 2}}>
+                            (myContext.selectedOption && myContext.selectedOption.name === 'Add to cart') && <div style={{ width: '90%', padding: 20, columns: 2 }}>
                                 {
                                     getMainOptions().map((item, index) => {
                                         if (item.selectionData && item.data) {
-                                            if (item.data.items && item.data.items.length && item.selectionData[1] > 0)
-                                            {
+                                            if (item.data.items && item.data.items.length && item.selectionData[1] > 0) {
                                                 const selectedItem = item.data.items[item.selectionData[0]][item.selectionData[1]]
                                                 return <div style={summaryBottomBorder}>
-                                                    <div style={{flexDirection: 'row', color: '#fff', alignItems: 'center', display: 'flex', fontSize: 16}}>
+                                                    <div style={{ flexDirection: 'row', color: '#fff', alignItems: 'center', display: 'flex', fontSize: 16 }}>
                                                         {item.data.name}
                                                     </div>
-                                                    <div style={{flexDirection: 'row',alignItems: 'center', display: 'flex'}}>
-                                                        <img style={summaryImg} src={selectedItem.selet} width={40}/>
-                                                        <div style={{flexDirection: 'column', marginLeft: 10, display: 'flex'}}>
+                                                    <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex' }}>
+                                                        <img style={summaryImg} src={selectedItem.selet} width={40} />
+                                                        <div style={{ flexDirection: 'column', marginLeft: 10, display: 'flex' }}>
                                                             <span style={summaryPrice}>{selectedItem.name}</span>
                                                             <span style={summaryPrice}>+£{selectedItem.price}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             }
-                                            else
-                                            {
+                                            else {
                                                 if (myContext.razorBackData.is_default && item.data.name === 'Razorback Maxfire') {
                                                     return <div style={summaryBottomBorder}>
-                                                        <div style={{flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16, color: '#fff'}}>
+                                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16, color: '#fff' }}>
                                                             {item.data.name}
                                                         </div>
-                                                        <div style={{flexDirection: 'row',alignItems: 'center', display: 'flex'}}>
-                                                            <img style={summaryImg} src={item.image} width={40}/>
-                                                            <div style={{flexDirection: 'column', marginLeft: 10, display: 'flex'}}>
+                                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex' }}>
+                                                            <img style={summaryImg} src={item.image} width={40} />
+                                                            <div style={{ flexDirection: 'column', marginLeft: 10, display: 'flex' }}>
                                                                 {/*<span style={summaryPrice}>{myContext.razorBackData.name}</span>*/}
                                                                 <span style={summaryPrice}>+£{myContext.razorBackData.price}</span>
                                                             </div>
@@ -1334,27 +1315,26 @@ const Tools = (props) => {
                                                 if (myContext.esportsFlag > 0 && item.data.name === 'eSports') {
                                                     let flagIndex = myContext.esportsFlag
 
-                                                    let object = {price: 0}
+                                                    let object = { price: 0 }
                                                     if (!myContext.paddleData || !myContext.dominSelectLeftData) {
                                                         flagIndex = 1
                                                     }
-                                                    if (myContext.paddle && myContext.paddleData.items)
-                                                    {
+                                                    if (myContext.paddle && myContext.paddleData.items) {
                                                         object.price = myContext.paddleData.items[myContext.paddle[0]][myContext.paddle[1]].price
                                                     }
-                                                    else if (myContext.dominSelectLeftData){
+                                                    else if (myContext.dominSelectLeftData) {
                                                         if (myContext.dominSelectLeftData.items[myContext.ldomin_2])
                                                             object.price += Number(myContext.dominSelectLeftData.items[myContext.ldomin_1].price)
                                                         if (myContext.dominSelectRightData.items[myContext.rdomin_2])
                                                             object.price += Number(myContext.dominSelectRightData.items[myContext.rdomin_1].price)
                                                     }
                                                     return <div style={summaryBottomBorder}>
-                                                        <div style={{flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16, color: '#fff'}}>
+                                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16, color: '#fff' }}>
                                                             {item.data.name}
                                                         </div>
-                                                        <div style={{flexDirection: 'row',alignItems: 'center', display: 'flex'}}>
-                                                            <img style={summaryImg} src={myContext.paddle ? PaddleImg : DominLimg} width={35}/>
-                                                            <div style={{flexDirection: 'column', marginLeft: 10, display: 'flex'}}>
+                                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex' }}>
+                                                            <img style={summaryImg} src={myContext.paddle ? PaddleImg : DominLimg} width={35} />
+                                                            <div style={{ flexDirection: 'column', marginLeft: 10, display: 'flex' }}>
                                                                 <span style={summaryPrice}>{myContext.esportsData.values[flagIndex].desc}</span>
                                                                 <span style={summaryPrice}>+£{object.price}</span>
                                                             </div>
@@ -1366,12 +1346,12 @@ const Tools = (props) => {
                                                 if (myContext.digital_trigger === true && item.data.name === 'Smart Triggers') {
                                                     console.log('myContext.dtriggersData:', myContext.dtriggersData)
                                                     return <div style={summaryBottomBorder}>
-                                                        <div style={{flexDirection: 'row', alignItems: 'center', display: 'flex', color: '#fff', fontSize: 16}}>
+                                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex', color: '#fff', fontSize: 16 }}>
                                                             {item.data.name}
                                                         </div>
-                                                        <div style={{flexDirection: 'row',alignItems: 'center', display: 'flex'}}>
-                                                            <img style={summaryImg} src={item.image} width={40}/>
-                                                            <div style={{flexDirection: 'column', marginLeft: 10, display: 'flex'}}>
+                                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex' }}>
+                                                            <img style={summaryImg} src={item.image} width={40} />
+                                                            <div style={{ flexDirection: 'column', marginLeft: 10, display: 'flex' }}>
                                                                 {/*<span style={{color: 'darkgray'}}>{myContext.dtriggersData.name}</span>*/}
                                                                 <span style={summaryPrice}>+£{myContext.dtriggersData.items[0].price}</span>
                                                             </div>
@@ -1386,10 +1366,10 @@ const Tools = (props) => {
                                     // //Text and logo
                                     (myContext.textAndLogoData && (myContext.isText || myContext.isLogo)) &&
                                     <div style={summaryBottomBorder}>
-                                        <div style={{flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16, color: '#fff'}}>{myContext.textAndLogoData.name}</div>
-                                        <div style={{flexDirection: 'row',alignItems: 'center', display: 'flex'}}>
-                                            <img style={summaryImg} src={PersonalizeImg} width={40}/>
-                                            <div style={{flexDirection: 'column', marginLeft: 10, display: 'flex'}}>
+                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16, color: '#fff' }}>{myContext.textAndLogoData.name}</div>
+                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex' }}>
+                                            <img style={summaryImg} src={PersonalizeImg} width={40} />
+                                            <div style={{ flexDirection: 'column', marginLeft: 10, display: 'flex' }}>
                                                 <span style={summaryPrice}>{myContext.isText ? 'Text' : 'Logo'}</span>
                                                 <span style={summaryPrice}>+£{myContext.isText ? myContext.textPrice : myContext.logoPrice}</span>
                                             </div>
@@ -1398,10 +1378,10 @@ const Tools = (props) => {
                                 }
                                 {
                                     (totalSummaryItems() % 2 > 0) &&
-                                    <div style={{flexDirection: 'column', fontFamily: 'Teko-Bold', color: '#fff', height: 76, marginTop: 5}}>
-                                        <div style={{flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16}}>&nbsp;</div>
-                                        <div style={{flexDirection: 'row',alignItems: 'center', display: 'flex'}}>
-                                            <div style={{flexDirection: 'column', marginLeft: 10, display: 'flex'}}>
+                                    <div style={{ flexDirection: 'column', fontFamily: 'Teko-Bold', color: '#fff', height: 76, marginTop: 5 }}>
+                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex', fontSize: 16 }}>&nbsp;</div>
+                                        <div style={{ flexDirection: 'row', alignItems: 'center', display: 'flex' }}>
+                                            <div style={{ flexDirection: 'column', marginLeft: 10, display: 'flex' }}>
                                                 <span style={summaryPrice}>&nbsp;</span>
                                                 <span style={summaryPrice}>&nbsp;</span>
                                             </div>
@@ -1425,18 +1405,18 @@ const Tools = (props) => {
             {/* </ConfirmDiv> */}
             <LocalFooter showTopBorder={myContext.selectedOption && myContext.selectedOption.name === 'Design'}>
                 <div>
-                    <p style={{display: (myContext.selectedOption && (myContext.selectedOption.showPartSelect === false || (myContext.selectedOption.name === 'eSports' && (myContext.paddle === null || myContext.esportsFlag !== 1)))) ? 'none' : 'flex'}}>
+                    <p style={{ display: (myContext.selectedOption && (myContext.selectedOption.showPartSelect === false || (myContext.selectedOption.name === 'eSports' && (myContext.paddle === null || myContext.esportsFlag !== 1)))) ? 'none' : 'flex' }}>
                         <span>Part Selection: <span
-                            style={{fontFamily: 'Teko-Bold'}}>{(myContext.selectedOption && Object.keys(myContext.partSelected).length > 0 && myContext.partSelected[myContext.selectedOption.name]) ? myContext.partSelected[myContext.selectedOption.name] : 'Stock'}</span></span>
+                            style={{ fontFamily: 'Teko-Bold' }}>{(myContext.selectedOption && Object.keys(myContext.partSelected).length > 0 && myContext.partSelected[myContext.selectedOption.name]) ? myContext.partSelected[myContext.selectedOption.name] : 'Stock'}</span></span>
                     </p>
                     <div id="info_div">
                         <TotalPrice>
-							<span>
-								Total
-							</span>
                             <span>
-								£{totalPrice.toFixed(2)}
-							</span>
+                                Total
+                            </span>
+                            <span>
+                                £{totalPrice.toFixed(2)}
+                            </span>
                         </TotalPrice>
                         <Info>
                             <div>
@@ -1449,7 +1429,7 @@ const Tools = (props) => {
                                 swiperTo(myContext.menuItems.length - 1)
                                 //handleCaptureClick()
                             }} flag={myContext.isFinished}>
-                                <i style={{fontSize: 26, width: 26}} className='fa fa-shopping-cart'/>
+                                <i style={{ fontSize: 26, width: 26 }} className='fa fa-shopping-cart' />
                                 {(selectedController.quote_id === null || isShare || _.isNaN(selectedController.item_id)) ? 'ADD  TO  CART' : 'UPDATE  CART'}
                             </ATC> : null
                             }
@@ -1662,10 +1642,10 @@ const TapItem = styled.div`
     white-space: nowrap;
   }
   ${props => {
-    if (props.keys === props.active) {
-        return css`box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.58);`
-    }
-}}
+        if (props.keys === props.active) {
+            return css`box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.58);`
+        }
+    }}
   div {
     position: absolute;
     background-color: ${props => props.keys === props.active ? props.theme.ThemeColor : 'none'};
@@ -1673,10 +1653,10 @@ const TapItem = styled.div`
     height: 3px;
     bottom: 0;
     ${props => {
-    if (props.keys === props.active) {
-        return css`box-shadow: 0px 4px 12px rgba(0, 205, 112, 0.58);`;
-    }
-}}
+        if (props.keys === props.active) {
+            return css`box-shadow: 0px 4px 12px rgba(0, 205, 112, 0.58);`;
+        }
+    }}
   }
 `
 
@@ -1906,12 +1886,12 @@ const MenuItem = styled.div`
   cursor: pointer;
   color: ${props => props.theme.color};
   ${(props) => {
-    if (props.me === props.curr) {
-        return css`
+        if (props.me === props.curr) {
+            return css`
         color: ${props.theme.ThemeColor};
       `;
-    }
-}}
+        }
+    }}
   img {
     width: 46px;
     margin-right: 10px;
@@ -1926,12 +1906,12 @@ const MenuItem = styled.div`
     display: ${props => props.stat ? 'block' : 'none'};
     color: ${props => props.theme.color};
     /* ${(props) => {
-    if (props.stat) {
-        return css`
+        if (props.stat) {
+            return css`
           color: ${props.theme.ThemeColor};
         `;
-    }
-}} */
+        }
+    }} */
   }
 `
 
