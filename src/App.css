@@ -6,6 +6,7 @@
 /*  !* mobile viewport bug fix *!*/
 /*  min-height: -webkit-fill-available;*/
 /*}*/
+
 html, body {
   overflow: hidden;
 }
