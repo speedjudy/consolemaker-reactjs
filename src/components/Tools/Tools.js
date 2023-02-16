@@ -485,11 +485,11 @@ const Tools = (props) => {
         // }
         const menuItems = cateOptions.concat(options_manual_show)
         if (!_.isEmpty(myContext.paddle)) {
-            menuItems.splice(menuItems.length - 4, 1)
+            // menuItems.splice(menuItems.length - 4, 1)
         }
 
         if (!myContext.personalizationData) {
-            menuItems.splice(menuItems.length - 2, 1)
+            // menuItems.splice(menuItems.length - 2, 1)
         }
 
         if (myContext.razorBackData.is_default) {
@@ -643,7 +643,7 @@ const Tools = (props) => {
                     </div>
                 </div>
             </TopDiv>
-            <MediumDiv ref={middRef}>
+            <MediumDiv ref={middRef} className={isDisabled ? 'disabled' : ''}>
                 <Swiper
                     onSwiper={s => {
                         myContext.setSwiper(s)
