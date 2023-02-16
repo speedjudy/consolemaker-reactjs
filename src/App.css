@@ -6,6 +6,7 @@
 /*  !* mobile viewport bug fix *!*/
 /*  min-height: -webkit-fill-available;*/
 /*}*/
+
 html, body {
   overflow: hidden;
 }
@@ -330,5 +331,11 @@ p {
       -webkit-transform: rotate(360deg);
       -ms-transform: rotate(360deg);
       transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 400px) { 
+  .deleteImg {
+    margin-top: 0px !important;
   }
 }

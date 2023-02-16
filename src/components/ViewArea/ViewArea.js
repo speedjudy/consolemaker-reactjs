@@ -224,7 +224,7 @@ const ViewArea = (props) => {
                   {/* <AniImg i={myContext.aniImg !== null ? myContext.aniImg : 'null'} f={myContext.aniFlag}></AniImg> */}
                   {/*Text and Logo*/}
                   {(props.controllerId !== 'byoxbx' && props.controllerId !== 'byoxbxled' && props.controllerId !== 'buildyourownELITExb1') &&
-                    <SpecialArea showBtn={(myContext.selectedOption && myContext.selectedOption.name === 'Personalization' && myContext.images.length > 0 && myContext.isLogo)} btnTop={props.controllerId === 'build-your-own-ps4' ? '15%' : '12%'} btnLeft={props.controllerId === 'build-your-own-ps4' ? '36%' : '37%'} sf={myContext.sideflag} top={props.controllerId === 'build-your-own-ps4' ? '19%' : '15%'} left={props.controllerId === 'build-your-own-ps4' ? '38%' : '39.3%'} si={myContext.selectedOption && myContext.selectedOption.name === 'Personalization'} id='specialArea'
+                    <SpecialArea showBtn={(myContext.selectedOption && myContext.selectedOption.name === 'Personalization' && myContext.images.length > 0 && myContext.isLogo)} btnTop={props.controllerId === 'build-your-own-ps4' ? '15%' : '12%'} btnLeft={props.controllerId === 'build-your-own-ps4' ? '36%' : '37%'} sf={myContext.sideflag} top={props.controllerId === 'build-your-own-ps4' ? '20%' : '15%'} left={props.controllerId === 'build-your-own-ps4' ? '38%' : '39.3%'} si={myContext.selectedOption && myContext.selectedOption.name === 'Personalization'} id='specialArea'
                       onClick={() => {
                         if (myContext.isText || myContext.isLogo) {
                           myContext.setSnapIndex(myContext.menuItems.length - 2);
@@ -238,7 +238,7 @@ const ViewArea = (props) => {
                         </div>
                         <button style={{ cursor: 'pointer' }} onClick={() => {
                           myContext.setImages([])
-                        }}><img src={require('../../assets/images/delete_bin_icon.png')} width={15} height={15} /></button>
+                        }}><img className="deleteImg" src={require('../../assets/images/delete_bin_icon.png')} width={15} height={15} /></button>
                       </div>
                     </SpecialArea>}
                 </div>
@@ -297,7 +297,7 @@ const ViewArea = (props) => {
                         </div>
                         <button style={{ cursor: 'pointer' }} onClick={() => {
                           myContext.setImages([])
-                        }}><img src={require('../../assets/images/delete_bin_icon.png')} width={15} height={15} /></button>
+                        }}><img className="deleteImg" src={require('../../assets/images/delete_bin_icon.png')} width={15} height={15} /></button>
                       </div>
                     </SpecialArea>}
                 </div>
@@ -733,7 +733,7 @@ const SpecialArea = styled.div`
       outline: ${props => (props.sf && props.si === true) ? '2px dotted red' : 'none'};
       @media only screen and (max-width: 393px) { 
        outline: ${props => (props.sf && props.si === true) ? '1px dotted red' : 'none'};
-        top: ${props => props.top ? (props.top === '15%' ? '6%' : '14%') : '6%'};
+        top: ${props => props.top ? (props.top === '15%' ? '6%' : '12%') : '6%'};
       }
       width: 24%;
       overflow: hidden;
