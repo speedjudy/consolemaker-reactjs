@@ -682,20 +682,16 @@ const Viewer = styled.div`
 
         @media screen and (max-width: 1000px) {
           top: ${props => !props.flag ? '20%' : '65%'};
-          transform: ${props => !props.flag ? 'scale(1.9)' : 'scale(0)'};
         }
 
         @media screen and (max-width: 800px) {
           top: ${props => !props.flag ? '0%' : '65%'};
-          transform: ${props => !props.flag ? 'scale(1.4)' : 'scale(0)'};
         }
         @media screen and (max-width: 600px) {
           top: ${props => !props.flag ? '0%' : '65%'};
-          transform: ${props => !props.flag ? 'scale(1.6)' : 'scale(0)'};
         }
         @media screen and (max-width: 400px) {
           top: ${props => !props.flag ? '10%' : '65%'};
-          transform: ${props => !props.flag ? 'scale(2.1)' : 'scale(0)'};
         }
       }
     }
